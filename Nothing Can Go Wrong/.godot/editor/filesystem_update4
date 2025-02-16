@@ -1,0 +1,4 @@
+res://main/main.tscn
+res://autoload/ScreenTransition/screen_transition.gdshader
+res://autoload/ScreenTransition/screen_transition.tscn
+res://scenes/camp_site/camp_site.tscn

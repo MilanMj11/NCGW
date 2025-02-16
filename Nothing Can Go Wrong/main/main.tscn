@@ -1,0 +1,18 @@
+[gd_scene load_steps=3 format=3 uid="uid://djfuwm3p8aos"]
+
+[ext_resource type="Script" path="res://main/main.gd" id="1_63fsq"]
+[ext_resource type="PackedScene" uid="uid://gvq5w41sd8yu" path="res://scenes/camp_site/camp_site.tscn" id="2_xtahn"]
+
+[node name="Main" type="Node"]
+script = ExtResource("1_63fsq")
+
+[node name="UI" type="Node" parent="."]
+
+[node name="Managers" type="Node" parent="."]
+
+[node name="GameCamera" type="Camera2D" parent="."]
+position = Vector2(320, 180)
+
+[node name="CurrentScene" type="Node" parent="."]
+
+[node name="CampSite" parent="CurrentScene" instance=ExtResource("2_xtahn")]
