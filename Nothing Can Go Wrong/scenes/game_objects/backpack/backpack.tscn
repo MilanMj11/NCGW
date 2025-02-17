@@ -1,0 +1,19 @@
+[gd_scene load_steps=3 format=3 uid="uid://dhf3nchvtfiaw"]
+
+[ext_resource type="Texture2D" uid="uid://cymk6ludselet" path="res://assets/icons/backpack_icon.png" id="1_usi2y"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_2o1dl"]
+radius = 5.0
+
+[node name="Backpack" type="Node2D"]
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(0, -5)
+shape = SubResource("CircleShape2D_2o1dl")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(0, -6)
+texture = ExtResource("1_usi2y")

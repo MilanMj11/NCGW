@@ -1,0 +1,28 @@
+[gd_scene load_steps=5 format=3 uid="uid://n7ki3jfyoja2"]
+
+[ext_resource type="Script" path="res://scenes/player/player.gd" id="1_2uc45"]
+[ext_resource type="Texture2D" uid="uid://c16brhxp4m47k" path="res://assets/temporary_character.png" id="2_u6p0s"]
+[ext_resource type="PackedScene" uid="uid://2im8yh8rvp74" path="res://scenes/components/velocity_component.tscn" id="2_wr01y"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_36a0o"]
+radius = 6.0
+
+[node name="Player" type="CharacterBody2D" groups=["player"]]
+y_sort_enabled = true
+collision_layer = 2
+script = ExtResource("1_2uc45")
+
+[node name="VelocityComponent" parent="." instance=ExtResource("2_wr01y")]
+max_speed = 80
+max_acceleration = 20.0
+
+[node name="Visuals" type="Node2D" parent="."]
+
+[node name="Sprite2D" type="Sprite2D" parent="Visuals"]
+texture = ExtResource("2_u6p0s")
+offset = Vector2(0, -12)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+visible = false
+position = Vector2(0, -6)
+shape = SubResource("CircleShape2D_36a0o")

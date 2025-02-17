@@ -1,0 +1,36 @@
+[gd_scene load_steps=5 format=3 uid="uid://dcs6r3yyhomgl"]
+
+[ext_resource type="Texture2D" uid="uid://bcwbbcbs3irs1" path="res://assets/props/tent_mud_pit.png" id="1_2kvhw"]
+[ext_resource type="Script" path="res://scenes/game_objects/tent/tent.gd" id="1_t8icu"]
+[ext_resource type="Texture2D" uid="uid://fltqqvcsrkf2" path="res://assets/props/tent.png" id="2_fybuj"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_g0b5i"]
+radius = 8.0
+height = 42.0
+
+[node name="Tent" type="Node2D"]
+y_sort_enabled = true
+script = ExtResource("1_t8icu")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+z_index = 1
+position = Vector2(1, -6)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_g0b5i")
+
+[node name="Visuals" type="Node2D" parent="."]
+y_sort_enabled = true
+
+[node name="Mud" type="Sprite2D" parent="Visuals"]
+y_sort_enabled = true
+position = Vector2(0, -20)
+texture = ExtResource("1_2kvhw")
+offset = Vector2(0, 19)
+
+[node name="Sprite2D" type="Sprite2D" parent="Visuals"]
+y_sort_enabled = true
+position = Vector2(0, -8)
+texture = ExtResource("2_fybuj")

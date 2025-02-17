@@ -1,3 +1,10 @@
+res://scenes/camera
+res://scenes/components
+res://scenes/player
+res://scenes/game_objects/backpack
+res://scenes/game_objects/sitting_log
+res://scenes/game_objects/tent
+res://scenes/game_objects/fireplace
 res://main
 res://scenes/camp_site
 res://autoload/ScreenTransition
