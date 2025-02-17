@@ -1,6 +1,10 @@
+res://scenes/menu
+res://assets/fonts
+res://resources/theme
+res://scenes/managers
+res://scenes/UI/inventory
 res://autoload/GameEvents
 res://scenes/UI
-res://scenes/managers
 res://scenes/camera
 res://scenes/components
 res://scenes/player

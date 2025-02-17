@@ -1,11 +1,22 @@
-[gd_scene load_steps=3 format=3 uid="uid://dhf3nchvtfiaw"]
+[gd_scene load_steps=5 format=3 uid="uid://dhf3nchvtfiaw"]
 
+[ext_resource type="PackedScene" uid="uid://44nq0s7qpl1t" path="res://scenes/menu/menu_load_area_2d.tscn" id="1_g8ado"]
 [ext_resource type="Texture2D" uid="uid://cymk6ludselet" path="res://assets/icons/backpack_icon.png" id="1_usi2y"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_sphm8"]
+radius = 18.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_2o1dl"]
 radius = 5.0
 
 [node name="Backpack" type="Node2D"]
+
+[node name="MenuLoadArea2D" parent="." instance=ExtResource("1_g8ado")]
+menu_to_show = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="MenuLoadArea2D"]
+position = Vector2(0, -1)
+shape = SubResource("CircleShape2D_sphm8")
 
 [node name="StaticBody2D" type="StaticBody2D" parent="."]
 collision_mask = 2

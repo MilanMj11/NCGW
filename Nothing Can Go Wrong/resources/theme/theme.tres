@@ -1,0 +1,22 @@
+[gd_resource type="Theme" load_steps=3 format=3 uid="uid://bgquwgy330vh1"]
+
+[ext_resource type="Texture2D" uid="uid://c1mg8a70slo67" path="res://assets/UI_images/UI_elements.png" id="1_u5o2b"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_mam0m"]
+texture = ExtResource("1_u5o2b")
+texture_margin_left = 4.0
+texture_margin_top = 6.0
+texture_margin_right = 4.0
+texture_margin_bottom = 3.0
+region_rect = Rect2(0, 0, 16, 16)
+
+[resource]
+AlternativePanelContainer/base_type = &"PanelContainer"
+AlternativePanelContainer/styles/panel = SubResource("StyleBoxTexture_mam0m")
+Label/colors/font_color = Color(0.529412, 0.298039, 0.192157, 1)
+Label/colors/font_outline_color = Color(0.231373, 0.0862745, 0.0588235, 1)
+Label/constants/outline_size = 5
+Label/constants/shadow_offset_x = 0
+Label/constants/shadow_offset_y = 0
+Label/constants/shadow_outline_size = 0
+Label/font_sizes/font_size = 9

@@ -1,11 +1,12 @@
 extends Node
 
-enum ITEM_TYPE {RAW_FOOD, COOKED_FOOD, WATER, FLASHLIGHT, FLAREGUN, BATTERY}
+enum ITEM_TYPE {RAW_FOOD, COOKED_FOOD, WATER, WOOD, FLASHLIGHT, FLAREGUN, BATTERY}
 
 @onready var current_items : Dictionary = {
 	ITEM_TYPE.RAW_FOOD : 0,
 	ITEM_TYPE.COOKED_FOOD : 0,
 	ITEM_TYPE.WATER : 0,
+	ITEM_TYPE.WOOD : 0,
 	ITEM_TYPE.FLASHLIGHT : 1,
 	ITEM_TYPE.FLAREGUN : 0,
 	ITEM_TYPE.BATTERY : 0
@@ -16,6 +17,7 @@ enum ITEM_TYPE {RAW_FOOD, COOKED_FOOD, WATER, FLASHLIGHT, FLAREGUN, BATTERY}
 	ITEM_TYPE.RAW_FOOD : preload("res://assets/icons/food_icon.png"),
 	ITEM_TYPE.COOKED_FOOD : preload("res://assets/icons/cooked_food_icon.png"),
 	ITEM_TYPE.WATER : preload("res://assets/icons/bottle_of_water_icon.png"),
+	ITEM_TYPE.WOOD : preload("res://assets/icons/wood_icon.png"),
 	ITEM_TYPE.FLASHLIGHT : preload("res://assets/icons/flashlight_icon.png"),
 	ITEM_TYPE.FLAREGUN : preload("res://assets/icons/flaregun_icon.png"),
 	ITEM_TYPE.BATTERY : preload("res://assets/icons/battery_icon.png")

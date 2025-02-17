@@ -19,6 +19,7 @@ var current_stats : Dictionary = {
 	STAT_TYPE.ENERGY : 10,
 }
 
+
 func _ready():
 	set_maximum_stats()
 

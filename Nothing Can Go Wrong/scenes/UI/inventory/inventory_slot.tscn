@@ -1,0 +1,32 @@
+[gd_scene load_steps=4 format=3 uid="uid://cg83mell6iikc"]
+
+[ext_resource type="Texture2D" uid="uid://dbm17ao1cywi6" path="res://assets/UI_images/inventory_slot.png" id="1_hgg2o"]
+[ext_resource type="FontFile" uid="uid://dawgyheohpbe0" path="res://assets/fonts/PixelatedEleganceRegular-ovyAA.ttf" id="2_b3m0v"]
+[ext_resource type="Texture2D" uid="uid://dhyhmju02wogu" path="res://assets/icons/cooked_food_icon.png" id="2_rhns6"]
+
+[node name="InventorySlot" type="Panel"]
+self_modulate = Color(1, 1, 1, 0)
+custom_minimum_size = Vector2(20, 20)
+offset_right = 20.0
+offset_bottom = 20.0
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_hgg2o")
+centered = false
+
+[node name="ItemDisplay" type="Sprite2D" parent="."]
+texture = ExtResource("2_rhns6")
+centered = false
+offset = Vector2(2, 2)
+
+[node name="QuantityLabel" type="Label" parent="."]
+layout_mode = 0
+offset_left = 2.0
+offset_top = 11.0
+offset_right = 16.0
+offset_bottom = 19.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 0)
+theme_override_fonts/font = ExtResource("2_b3m0v")
+theme_override_font_sizes/font_size = 9
+text = "8"

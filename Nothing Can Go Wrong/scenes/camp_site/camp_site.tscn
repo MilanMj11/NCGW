@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://gvq5w41sd8yu"]
+[gd_scene load_steps=18 format=3 uid="uid://gvq5w41sd8yu"]
 
 [ext_resource type="Texture2D" uid="uid://bwli14xpx7bux" path="res://assets/tiles/ground_tiles.png" id="1_aas6s"]
 [ext_resource type="Script" path="res://scenes/camp_site/camp_site.gd" id="1_t5w20"]
@@ -1378,6 +1378,15 @@ sources/0 = SubResource("TileSetAtlasSource_wye8o")
 sources/1 = SubResource("TileSetAtlasSource_nlvbc")
 sources/2 = SubResource("TileSetAtlasSource_snoaw")
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_v41fc"]
+size = Vector2(20, 203.5)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_0o34o"]
+size = Vector2(20, 77.4862)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_8i3og"]
+size = Vector2(20, 128.301)
+
 [node name="CampSite" type="Node2D"]
 y_sort_enabled = true
 script = ExtResource("1_t5w20")
@@ -1423,6 +1432,58 @@ position = Vector2(338, 167)
 
 [node name="Backpack" parent="Objects" instance=ExtResource("9_x785d")]
 position = Vector2(238, 167)
+
+[node name="Barriers" type="Node2D" parent="Objects"]
+visible = false
+
+[node name="StaticBody2D" type="StaticBody2D" parent="Objects/Barriers"]
+position = Vector2(420, 154)
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Objects/Barriers/StaticBody2D"]
+shape = SubResource("RectangleShape2D_v41fc")
+
+[node name="StaticBody2D2" type="StaticBody2D" parent="Objects/Barriers"]
+position = Vector2(325, 262)
+rotation = 1.37706
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Objects/Barriers/StaticBody2D2"]
+shape = SubResource("RectangleShape2D_v41fc")
+
+[node name="StaticBody2D3" type="StaticBody2D" parent="Objects/Barriers"]
+position = Vector2(180, 193)
+rotation = -0.568977
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Objects/Barriers/StaticBody2D3"]
+shape = SubResource("RectangleShape2D_v41fc")
+
+[node name="StaticBody2D4" type="StaticBody2D" parent="Objects/Barriers"]
+position = Vector2(216, 89)
+rotation = 0.71384
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Objects/Barriers/StaticBody2D4"]
+shape = SubResource("RectangleShape2D_v41fc")
+
+[node name="StaticBody2D6" type="StaticBody2D" parent="Objects/Barriers"]
+position = Vector2(255, 94)
+rotation = 1.70693
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Objects/Barriers/StaticBody2D6"]
+position = Vector2(-1.90735e-06, 2.67029e-05)
+shape = SubResource("RectangleShape2D_0o34o")
+
+[node name="StaticBody2D7" type="StaticBody2D" parent="Objects/Barriers"]
+position = Vector2(322, 90)
+rotation = 1.30376
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Objects/Barriers/StaticBody2D7"]
+position = Vector2(0, -25.4073)
+shape = SubResource("RectangleShape2D_8i3og")
 
 [node name="Entities" type="Node2D" parent="."]
 y_sort_enabled = true

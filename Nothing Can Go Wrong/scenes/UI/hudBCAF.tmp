@@ -1,0 +1,251 @@
+[gd_scene load_steps=12 format=3 uid="uid://dhogo7g153g3l"]
+
+[ext_resource type="Script" path="res://scenes/UI/hud.gd" id="1_b35fa"]
+[ext_resource type="Texture2D" uid="uid://c2sxg5gvcxju6" path="res://assets/UI_images/health_bar_point.png" id="2_0gshd"]
+[ext_resource type="Texture2D" uid="uid://bnx5ib1vu2mgb" path="res://assets/UI_images/energy_bar_point.png" id="2_01tqb"]
+[ext_resource type="Texture2D" uid="uid://lje3sddddi3d" path="res://assets/icons/health_icon.png" id="2_5s7d7"]
+[ext_resource type="Texture2D" uid="uid://qglc6pv5mnp1" path="res://assets/icons/energy_icon.png" id="4_uvg6a"]
+[ext_resource type="Texture2D" uid="uid://d3cys606demh5" path="res://assets/icons/water_icon.png" id="6_4ifb2"]
+[ext_resource type="Texture2D" uid="uid://nlntoonxxhnj" path="res://assets/icons/hunger_icon.png" id="6_i2l7k"]
+[ext_resource type="Texture2D" uid="uid://ule0k4of4p56" path="res://assets/UI_images/hunger_bar_point.png" id="7_37y44"]
+[ext_resource type="Texture2D" uid="uid://c1t00xwuxod3p" path="res://assets/UI_images/thirst_bar_point.png" id="7_87e83"]
+[ext_resource type="Texture2D" uid="uid://f6l8mt2wqjyb" path="res://assets/icons/sanity_icon.png" id="10_rgnmm"]
+[ext_resource type="Texture2D" uid="uid://bakm3nh772og3" path="res://assets/UI_images/sanity_bar_point.png" id="11_bomt1"]
+
+[node name="HUD" type="CanvasLayer" groups=["hud"]]
+script = ExtResource("1_b35fa")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = -640.0
+offset_bottom = -360.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(2, 2)
+theme_override_constants/margin_left = 4
+theme_override_constants/margin_top = 4
+theme_override_constants/margin_right = 4
+theme_override_constants/margin_bottom = 4
+
+[node name="HEContainer" type="VBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+theme_override_constants/separation = 2
+
+[node name="HealthContainer" type="HBoxContainer" parent="MarginContainer/HEContainer"]
+layout_mode = 2
+theme_override_constants/separation = 2
+
+[node name="HealthIcon" type="TextureRect" parent="MarginContainer/HEContainer/HealthContainer"]
+layout_mode = 2
+texture = ExtResource("2_5s7d7")
+
+[node name="HealthBarsContainer" type="HBoxContainer" parent="MarginContainer/HEContainer/HealthContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_constants/separation = -6
+
+[node name="TextureRect" type="TextureRect" parent="MarginContainer/HEContainer/HealthContainer/HealthBarsContainer"]
+layout_mode = 2
+texture = ExtResource("2_0gshd")
+
+[node name="TextureRect2" type="TextureRect" parent="MarginContainer/HEContainer/HealthContainer/HealthBarsContainer"]
+layout_mode = 2
+texture = ExtResource("2_0gshd")
+
+[node name="TextureRect3" type="TextureRect" parent="MarginContainer/HEContainer/HealthContainer/HealthBarsContainer"]
+layout_mode = 2
+texture = ExtResource("2_0gshd")
+
+[node name="TextureRect4" type="TextureRect" parent="MarginContainer/HEContainer/HealthContainer/HealthBarsContainer"]
+layout_mode = 2
+texture = ExtResource("2_0gshd")
+
+[node name="TextureRect5" type="TextureRect" parent="MarginContainer/HEContainer/HealthContainer/HealthBarsContainer"]
+layout_mode = 2
+texture = ExtResource("2_0gshd")
+
+[node name="TextureRect6" type="TextureRect" parent="MarginContainer/HEContainer/HealthContainer/HealthBarsContainer"]
+layout_mode = 2
+texture = ExtResource("2_0gshd")
+
+[node name="TextureRect7" type="TextureRect" parent="MarginContainer/HEContainer/HealthContainer/HealthBarsContainer"]
+layout_mode = 2
+texture = ExtResource("2_0gshd")
+
+[node name="TextureRect8" type="TextureRect" parent="MarginContainer/HEContainer/HealthContainer/HealthBarsContainer"]
+layout_mode = 2
+texture = ExtResource("2_0gshd")
+
+[node name="TextureRect9" type="TextureRect" parent="MarginContainer/HEContainer/HealthContainer/HealthBarsContainer"]
+layout_mode = 2
+texture = ExtResource("2_0gshd")
+
+[node name="EnergyContainer" type="HBoxContainer" parent="MarginContainer/HEContainer"]
+layout_mode = 2
+theme_override_constants/separation = 2
+
+[node name="EnergyIcon" type="TextureRect" parent="MarginContainer/HEContainer/EnergyContainer"]
+layout_mode = 2
+texture = ExtResource("4_uvg6a")
+
+[node name="EnergyBarsContainer" type="HBoxContainer" parent="MarginContainer/HEContainer/EnergyContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_constants/separation = -6
+
+[node name="TextureRect" type="TextureRect" parent="MarginContainer/HEContainer/EnergyContainer/EnergyBarsContainer"]
+layout_mode = 2
+texture = ExtResource("2_01tqb")
+
+[node name="TextureRect2" type="TextureRect" parent="MarginContainer/HEContainer/EnergyContainer/EnergyBarsContainer"]
+layout_mode = 2
+texture = ExtResource("2_01tqb")
+
+[node name="TextureRect3" type="TextureRect" parent="MarginContainer/HEContainer/EnergyContainer/EnergyBarsContainer"]
+layout_mode = 2
+texture = ExtResource("2_01tqb")
+
+[node name="TextureRect4" type="TextureRect" parent="MarginContainer/HEContainer/EnergyContainer/EnergyBarsContainer"]
+layout_mode = 2
+texture = ExtResource("2_01tqb")
+
+[node name="TextureRect5" type="TextureRect" parent="MarginContainer/HEContainer/EnergyContainer/EnergyBarsContainer"]
+layout_mode = 2
+texture = ExtResource("2_01tqb")
+
+[node name="TextureRect6" type="TextureRect" parent="MarginContainer/HEContainer/EnergyContainer/EnergyBarsContainer"]
+layout_mode = 2
+texture = ExtResource("2_01tqb")
+
+[node name="TextureRect7" type="TextureRect" parent="MarginContainer/HEContainer/EnergyContainer/EnergyBarsContainer"]
+layout_mode = 2
+texture = ExtResource("2_01tqb")
+
+[node name="TextureRect8" type="TextureRect" parent="MarginContainer/HEContainer/EnergyContainer/EnergyBarsContainer"]
+layout_mode = 2
+texture = ExtResource("2_01tqb")
+
+[node name="TextureRect9" type="TextureRect" parent="MarginContainer/HEContainer/EnergyContainer/EnergyBarsContainer"]
+layout_mode = 2
+texture = ExtResource("2_01tqb")
+
+[node name="SanityContainer" type="HBoxContainer" parent="MarginContainer/HEContainer"]
+layout_mode = 2
+theme_override_constants/separation = 2
+
+[node name="SanityIcon" type="TextureRect" parent="MarginContainer/HEContainer/SanityContainer"]
+layout_mode = 2
+texture = ExtResource("10_rgnmm")
+
+[node name="SanityBarsContainer" type="HBoxContainer" parent="MarginContainer/HEContainer/SanityContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_constants/separation = -6
+
+[node name="TextureRect" type="TextureRect" parent="MarginContainer/HEContainer/SanityContainer/SanityBarsContainer"]
+layout_mode = 2
+texture = ExtResource("11_bomt1")
+
+[node name="TextureRect2" type="TextureRect" parent="MarginContainer/HEContainer/SanityContainer/SanityBarsContainer"]
+layout_mode = 2
+texture = ExtResource("11_bomt1")
+
+[node name="TextureRect3" type="TextureRect" parent="MarginContainer/HEContainer/SanityContainer/SanityBarsContainer"]
+layout_mode = 2
+texture = ExtResource("11_bomt1")
+
+[node name="TextureRect4" type="TextureRect" parent="MarginContainer/HEContainer/SanityContainer/SanityBarsContainer"]
+layout_mode = 2
+texture = ExtResource("11_bomt1")
+
+[node name="TextureRect5" type="TextureRect" parent="MarginContainer/HEContainer/SanityContainer/SanityBarsContainer"]
+layout_mode = 2
+texture = ExtResource("11_bomt1")
+
+[node name="TextureRect6" type="TextureRect" parent="MarginContainer/HEContainer/SanityContainer/SanityBarsContainer"]
+layout_mode = 2
+texture = ExtResource("11_bomt1")
+
+[node name="HTSContainer" type="VBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 8
+theme_override_constants/separation = -1
+
+[node name="HungerContainer" type="HBoxContainer" parent="MarginContainer/HTSContainer"]
+layout_mode = 2
+theme_override_constants/separation = 2
+
+[node name="HungerIcon" type="TextureRect" parent="MarginContainer/HTSContainer/HungerContainer"]
+layout_mode = 2
+texture = ExtResource("6_i2l7k")
+
+[node name="HungerBarsContainer" type="HBoxContainer" parent="MarginContainer/HTSContainer/HungerContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_constants/separation = -6
+
+[node name="TextureRect" type="TextureRect" parent="MarginContainer/HTSContainer/HungerContainer/HungerBarsContainer"]
+layout_mode = 2
+texture = ExtResource("7_37y44")
+
+[node name="TextureRect2" type="TextureRect" parent="MarginContainer/HTSContainer/HungerContainer/HungerBarsContainer"]
+layout_mode = 2
+texture = ExtResource("7_37y44")
+
+[node name="TextureRect3" type="TextureRect" parent="MarginContainer/HTSContainer/HungerContainer/HungerBarsContainer"]
+layout_mode = 2
+texture = ExtResource("7_37y44")
+
+[node name="TextureRect4" type="TextureRect" parent="MarginContainer/HTSContainer/HungerContainer/HungerBarsContainer"]
+layout_mode = 2
+texture = ExtResource("7_37y44")
+
+[node name="TextureRect5" type="TextureRect" parent="MarginContainer/HTSContainer/HungerContainer/HungerBarsContainer"]
+layout_mode = 2
+texture = ExtResource("7_37y44")
+
+[node name="TextureRect6" type="TextureRect" parent="MarginContainer/HTSContainer/HungerContainer/HungerBarsContainer"]
+layout_mode = 2
+texture = ExtResource("7_37y44")
+
+[node name="ThirstContainer" type="HBoxContainer" parent="MarginContainer/HTSContainer"]
+layout_mode = 2
+theme_override_constants/separation = 2
+
+[node name="ThirstIcon" type="TextureRect" parent="MarginContainer/HTSContainer/ThirstContainer"]
+layout_mode = 2
+texture = ExtResource("6_4ifb2")
+
+[node name="ThirstBarsContainer" type="HBoxContainer" parent="MarginContainer/HTSContainer/ThirstContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_constants/separation = -6
+
+[node name="TextureRect" type="TextureRect" parent="MarginContainer/HTSContainer/ThirstContainer/ThirstBarsContainer"]
+layout_mode = 2
+texture = ExtResource("7_87e83")
+
+[node name="TextureRect2" type="TextureRect" parent="MarginContainer/HTSContainer/ThirstContainer/ThirstBarsContainer"]
+layout_mode = 2
+texture = ExtResource("7_87e83")
+
+[node name="TextureRect3" type="TextureRect" parent="MarginContainer/HTSContainer/ThirstContainer/ThirstBarsContainer"]
+layout_mode = 2
+texture = ExtResource("7_87e83")
+
+[node name="TextureRect4" type="TextureRect" parent="MarginContainer/HTSContainer/ThirstContainer/ThirstBarsContainer"]
+layout_mode = 2
+texture = ExtResource("7_87e83")
+
+[node name="TextureRect5" type="TextureRect" parent="MarginContainer/HTSContainer/ThirstContainer/ThirstBarsContainer"]
+layout_mode = 2
+texture = ExtResource("7_87e83")
+
+[node name="TextureRect6" type="TextureRect" parent="MarginContainer/HTSContainer/ThirstContainer/ThirstBarsContainer"]
+layout_mode = 2
+texture = ExtResource("7_87e83")
