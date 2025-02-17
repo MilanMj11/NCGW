@@ -1,4 +1,5 @@
 extends Node
+class_name StatsManager
 
 enum STAT_TYPE {HUNGER, THIRST, HEALTH, SANITY, ENERGY}
 
@@ -24,6 +25,7 @@ func _ready():
 
 func increase_maximum_stat(type: STAT_TYPE, amount: int):
 	maximum_stats[type] += amount
+	GameEvents.emit_stats_changed()
 
 
 func decrease_maximum_stat(type: STAT_TYPE, amount: int):
@@ -31,10 +33,12 @@ func decrease_maximum_stat(type: STAT_TYPE, amount: int):
 		push_error("CANNOT DECREASE MAXIMUM STAT WITH MORE THAN YOU HAVE")
 	
 	maximum_stats[type] -= amount
+	GameEvents.emit_stats_changed()
 
 
 func increase_stat(type: STAT_TYPE, amount: int):
 	current_stats[type] += amount
+	GameEvents.emit_stats_changed()
 
 
 func decrease_stat(type: STAT_TYPE, amount: int):
@@ -42,6 +46,7 @@ func decrease_stat(type: STAT_TYPE, amount: int):
 		push_error("CANNOT DECREASE CURRENT STAT WITH MORE THAN YOU HAVE")
 	
 	current_stats[type] -= amount
+	GameEvents.emit_stats_changed()
 
 
 func set_maximum_stats():

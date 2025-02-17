@@ -1,5 +1,9 @@
-CanvasLayer
 Node
+TextureRect
+HBoxContainer
+VBoxContainer
+MarginContainer
+CanvasLayer
 Node2D
 CollisionShape2D
 StaticBody2D
@@ -8,7 +12,3 @@ Sprite2D
 CharacterBody2D
 Area2D
 PointLight2D
-AnimationPlayer
-CanvasModulate
-TileMap
-ColorRect

@@ -19,3 +19,6 @@ res://scenes/managers/item_manager.gd
 res://scenes/managers/stats_manager.tscn
 res://scenes/managers/stats_manager.gd
 res://scenes/UI/hud.tscn
+res://scenes/UI/hud.gd
+res://autoload/GameEvents/game_events.tscn
+res://autoload/GameEvents/game_events.gd
