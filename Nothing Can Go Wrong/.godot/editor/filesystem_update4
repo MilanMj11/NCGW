@@ -14,3 +14,8 @@ res://scenes/components/velocity_component.tscn
 res://scenes/components/velocity_component.gd
 res://scenes/camera/game_camera.tscn
 res://scenes/camera/game_camera.gd
+res://scenes/managers/item_manager.tscn
+res://scenes/managers/item_manager.gd
+res://scenes/managers/stats_manager.tscn
+res://scenes/managers/stats_manager.gd
+res://scenes/UI/hud.tscn
