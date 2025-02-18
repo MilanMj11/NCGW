@@ -1,6 +1,7 @@
-[gd_scene load_steps=3 format=3 uid="uid://cq64l2xr0cubc"]
+[gd_scene load_steps=4 format=3 uid="uid://cq64l2xr0cubc"]
 
 [ext_resource type="Texture2D" uid="uid://brmmka1t6f71t" path="res://assets/UI_images/inventory_background.png" id="1_b67f6"]
+[ext_resource type="Script" path="res://scenes/UI/inventory/inventory.gd" id="1_t57po"]
 [ext_resource type="PackedScene" uid="uid://cg83mell6iikc" path="res://scenes/UI/inventory/inventory_slot.tscn" id="2_uvccg"]
 
 [node name="Inventory" type="Control"]
@@ -9,6 +10,8 @@ anchors_preset = 0
 offset_top = 2.0
 offset_bottom = 2.0
 pivot_offset = Vector2(42, 32)
+mouse_filter = 2
+script = ExtResource("1_t57po")
 
 [node name="NinePatchRect" type="NinePatchRect" parent="."]
 layout_mode = 0
@@ -36,37 +39,49 @@ theme_override_constants/v_separation = 0
 columns = 4
 
 [node name="InventorySlot1" parent="NinePatchRect/GridContainer" instance=ExtResource("2_uvccg")]
+unique_name_in_owner = true
 layout_mode = 2
 
 [node name="InventorySlot2" parent="NinePatchRect/GridContainer" instance=ExtResource("2_uvccg")]
+unique_name_in_owner = true
 layout_mode = 2
 
 [node name="InventorySlot3" parent="NinePatchRect/GridContainer" instance=ExtResource("2_uvccg")]
+unique_name_in_owner = true
 layout_mode = 2
 
 [node name="InventorySlot4" parent="NinePatchRect/GridContainer" instance=ExtResource("2_uvccg")]
+unique_name_in_owner = true
 layout_mode = 2
 
 [node name="InventorySlot5" parent="NinePatchRect/GridContainer" instance=ExtResource("2_uvccg")]
+unique_name_in_owner = true
 layout_mode = 2
 
 [node name="InventorySlot6" parent="NinePatchRect/GridContainer" instance=ExtResource("2_uvccg")]
+unique_name_in_owner = true
 layout_mode = 2
 
 [node name="InventorySlot7" parent="NinePatchRect/GridContainer" instance=ExtResource("2_uvccg")]
+unique_name_in_owner = true
 layout_mode = 2
 
 [node name="InventorySlot8" parent="NinePatchRect/GridContainer" instance=ExtResource("2_uvccg")]
+unique_name_in_owner = true
 layout_mode = 2
 
 [node name="InventorySlot9" parent="NinePatchRect/GridContainer" instance=ExtResource("2_uvccg")]
+unique_name_in_owner = true
 layout_mode = 2
 
 [node name="InventorySlot10" parent="NinePatchRect/GridContainer" instance=ExtResource("2_uvccg")]
+unique_name_in_owner = true
 layout_mode = 2
 
 [node name="InventorySlot11" parent="NinePatchRect/GridContainer" instance=ExtResource("2_uvccg")]
+unique_name_in_owner = true
 layout_mode = 2
 
 [node name="InventorySlot12" parent="NinePatchRect/GridContainer" instance=ExtResource("2_uvccg")]
+unique_name_in_owner = true
 layout_mode = 2

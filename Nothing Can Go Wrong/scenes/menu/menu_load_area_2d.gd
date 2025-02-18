@@ -16,6 +16,7 @@ func _ready():
 	body_entered.connect(on_body_entered)
 	body_exited.connect(on_body_exited)
 	$PanelContainer/Label.text = label_message
+	
 
 func _process(delta):
 	var E_pressed = Input.is_action_pressed("select")
@@ -26,6 +27,7 @@ func _process(delta):
 		button_active = false
 		await menu_manager.transition_finished
 		menu_on_screen = true
+	
 	
 	if menu_on_screen and ESC_pressed:
 		remove_selected_menu()
@@ -57,4 +59,3 @@ func on_body_entered(body: Node2D):
 func on_body_exited(body: Node2D):
 	button_active = false
 	$AnimationPlayer.play("out")
-	

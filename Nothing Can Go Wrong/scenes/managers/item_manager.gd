@@ -7,9 +7,19 @@ enum ITEM_TYPE {RAW_FOOD, COOKED_FOOD, WATER, WOOD, FLASHLIGHT, FLAREGUN, BATTER
 	ITEM_TYPE.COOKED_FOOD : 0,
 	ITEM_TYPE.WATER : 0,
 	ITEM_TYPE.WOOD : 0,
-	ITEM_TYPE.FLASHLIGHT : 1,
+	ITEM_TYPE.FLASHLIGHT : 0,
 	ITEM_TYPE.FLAREGUN : 0,
 	ITEM_TYPE.BATTERY : 0
+}
+
+
+@onready var interactable_items : Array = [ITEM_TYPE.COOKED_FOOD, ITEM_TYPE.WATER, ITEM_TYPE.FLAREGUN, ITEM_TYPE.BATTERY]
+
+@onready var items_to_interaction_message : Dictionary = {
+	ITEM_TYPE.COOKED_FOOD : "Eat",
+	ITEM_TYPE.WATER : "Drink",
+	ITEM_TYPE.FLAREGUN : "Call for Help",
+	ITEM_TYPE.BATTERY : "Reload Flashlight",
 }
 
 
@@ -24,8 +34,17 @@ enum ITEM_TYPE {RAW_FOOD, COOKED_FOOD, WATER, WOOD, FLASHLIGHT, FLAREGUN, BATTER
 }
 
 
+func _ready():
+	#Callable(add_items.bind(ITEM_TYPE.FLASHLIGHT, 1)).call_deferred()
+	add_items(ITEM_TYPE.FLASHLIGHT, 1)
+	add_items(ITEM_TYPE.WATER, 1)
+	add_items(ITEM_TYPE.COOKED_FOOD, 1)
+
+
+
 func add_items(type: ITEM_TYPE, quantity: int = 1):
 	current_items[type] += quantity
+	GameEvents.emit_items_changed()
 
 
 func remove_items(type: ITEM_TYPE, quantity: int = 1):
@@ -33,5 +52,6 @@ func remove_items(type: ITEM_TYPE, quantity: int = 1):
 		push_error("CANNOT REMOVE MORE ITEMS THAN YOU OWN!")
 	
 	current_items[type] -= quantity
+	GameEvents.emit_items_changed()
 
 

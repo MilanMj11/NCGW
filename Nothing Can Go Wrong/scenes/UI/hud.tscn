@@ -46,7 +46,7 @@ texture = ExtResource("2_5s7d7")
 [node name="HealthBarsContainer" type="HBoxContainer" parent="MarginContainer/HEContainer/HealthContainer"]
 unique_name_in_owner = true
 layout_mode = 2
-theme_override_constants/separation = -6
+theme_override_constants/separation = -5
 
 [node name="TextureRect" type="TextureRect" parent="MarginContainer/HEContainer/HealthContainer/HealthBarsContainer"]
 layout_mode = 2
@@ -95,7 +95,7 @@ texture = ExtResource("4_uvg6a")
 [node name="EnergyBarsContainer" type="HBoxContainer" parent="MarginContainer/HEContainer/EnergyContainer"]
 unique_name_in_owner = true
 layout_mode = 2
-theme_override_constants/separation = -6
+theme_override_constants/separation = -5
 
 [node name="TextureRect" type="TextureRect" parent="MarginContainer/HEContainer/EnergyContainer/EnergyBarsContainer"]
 layout_mode = 2
@@ -144,7 +144,7 @@ texture = ExtResource("10_rgnmm")
 [node name="SanityBarsContainer" type="HBoxContainer" parent="MarginContainer/HEContainer/SanityContainer"]
 unique_name_in_owner = true
 layout_mode = 2
-theme_override_constants/separation = -6
+theme_override_constants/separation = -5
 
 [node name="TextureRect" type="TextureRect" parent="MarginContainer/HEContainer/SanityContainer/SanityBarsContainer"]
 layout_mode = 2
@@ -187,7 +187,7 @@ texture = ExtResource("6_i2l7k")
 [node name="HungerBarsContainer" type="HBoxContainer" parent="MarginContainer/HTSContainer/HungerContainer"]
 unique_name_in_owner = true
 layout_mode = 2
-theme_override_constants/separation = -6
+theme_override_constants/separation = -5
 
 [node name="TextureRect" type="TextureRect" parent="MarginContainer/HTSContainer/HungerContainer/HungerBarsContainer"]
 layout_mode = 2
@@ -224,7 +224,7 @@ texture = ExtResource("6_4ifb2")
 [node name="ThirstBarsContainer" type="HBoxContainer" parent="MarginContainer/HTSContainer/ThirstContainer"]
 unique_name_in_owner = true
 layout_mode = 2
-theme_override_constants/separation = -6
+theme_override_constants/separation = -5
 
 [node name="TextureRect" type="TextureRect" parent="MarginContainer/HTSContainer/ThirstContainer/ThirstBarsContainer"]
 layout_mode = 2

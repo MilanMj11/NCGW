@@ -1,25 +1,136 @@
-[gd_scene load_steps=4 format=3 uid="uid://cg83mell6iikc"]
+[gd_scene load_steps=9 format=3 uid="uid://cg83mell6iikc"]
 
+[ext_resource type="Script" path="res://scenes/UI/inventory/inventory_slot.gd" id="1_6uyta"]
 [ext_resource type="Texture2D" uid="uid://dbm17ao1cywi6" path="res://assets/UI_images/inventory_slot.png" id="1_hgg2o"]
 [ext_resource type="FontFile" uid="uid://dawgyheohpbe0" path="res://assets/fonts/PixelatedEleganceRegular-ovyAA.ttf" id="2_b3m0v"]
 [ext_resource type="Texture2D" uid="uid://dhyhmju02wogu" path="res://assets/icons/cooked_food_icon.png" id="2_rhns6"]
+
+[sub_resource type="Animation" id="Animation_gw3k6"]
+resource_name = "button_pop_up"
+length = 0.3
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Button:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.0001, 0.0002, 0.0003, 0.0004, 0.025),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [false, false, false, false, false, true]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Button:position")
+tracks/1/interp = 2
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.3),
+"transitions": PackedFloat32Array(0.466516, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(15, -9)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Button:scale")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.3),
+"transitions": PackedFloat32Array(0.594604, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_kq8m1"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Button:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Button:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Button:scale")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_53l4o"]
+resource_name = "button_remove"
+length = 0.3
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Button:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.3),
+"transitions": PackedFloat32Array(1, 0.406126),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(0, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_bvudp"]
+_data = {
+"RESET": SubResource("Animation_kq8m1"),
+"button_pop_up": SubResource("Animation_gw3k6"),
+"button_remove": SubResource("Animation_53l4o")
+}
 
 [node name="InventorySlot" type="Panel"]
 self_modulate = Color(1, 1, 1, 0)
 custom_minimum_size = Vector2(20, 20)
 offset_right = 20.0
 offset_bottom = 20.0
+script = ExtResource("1_6uyta")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_bvudp")
+}
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("1_hgg2o")
 centered = false
 
 [node name="ItemDisplay" type="Sprite2D" parent="."]
+unique_name_in_owner = true
 texture = ExtResource("2_rhns6")
 centered = false
 offset = Vector2(2, 2)
 
 [node name="QuantityLabel" type="Label" parent="."]
+unique_name_in_owner = true
 layout_mode = 0
 offset_left = 2.0
 offset_top = 11.0
@@ -30,3 +141,13 @@ theme_override_colors/font_outline_color = Color(0, 0, 0, 0)
 theme_override_fonts/font = ExtResource("2_b3m0v")
 theme_override_font_sizes/font_size = 9
 text = "8"
+
+[node name="Button" type="Button" parent="."]
+visible = false
+z_index = 2
+layout_mode = 0
+offset_right = 35.0
+offset_bottom = 14.0
+pivot_offset = Vector2(17, 7)
+theme_override_font_sizes/font_size = 9
+text = " Use "

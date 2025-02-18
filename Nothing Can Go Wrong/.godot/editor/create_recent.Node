@@ -1,8 +1,10 @@
+Button
+Label
+AnimationPlayer
+Control
 MarginContainer
 CanvasLayer
 CollisionShape2D
-AnimationPlayer
-Label
 PanelContainer
 Area2D
 Node
@@ -10,6 +12,3 @@ ColorRect
 Panel
 Sprite2D
 GridContainer
-NinePatchRect
-Control
-StaticBody2D
