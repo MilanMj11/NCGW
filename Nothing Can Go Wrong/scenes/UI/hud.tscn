@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://dhogo7g153g3l"]
+[gd_scene load_steps=13 format=3 uid="uid://dhogo7g153g3l"]
 
 [ext_resource type="Script" path="res://scenes/UI/hud.gd" id="1_b35fa"]
 [ext_resource type="Texture2D" uid="uid://c2sxg5gvcxju6" path="res://assets/UI_images/health_bar_point.png" id="2_0gshd"]
@@ -11,6 +11,7 @@
 [ext_resource type="Texture2D" uid="uid://c1t00xwuxod3p" path="res://assets/UI_images/thirst_bar_point.png" id="7_87e83"]
 [ext_resource type="Texture2D" uid="uid://f6l8mt2wqjyb" path="res://assets/icons/sanity_icon.png" id="10_rgnmm"]
 [ext_resource type="Texture2D" uid="uid://bakm3nh772og3" path="res://assets/UI_images/sanity_bar_point.png" id="11_bomt1"]
+[ext_resource type="PackedScene" uid="uid://rclnek8bam4k" path="res://scenes/UI/map.tscn" id="12_qtwvq"]
 
 [node name="HUD" type="CanvasLayer" groups=["hud"]]
 script = ExtResource("1_b35fa")
@@ -249,3 +250,11 @@ texture = ExtResource("7_87e83")
 [node name="TextureRect6" type="TextureRect" parent="MarginContainer/HTSContainer/ThirstContainer/ThirstBarsContainer"]
 layout_mode = 2
 texture = ExtResource("7_87e83")
+
+[node name="Map" parent="MarginContainer" instance=ExtResource("12_qtwvq")]
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 8
+expand_mode = 1
+stretch_mode = 4

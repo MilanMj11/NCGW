@@ -1,8 +1,9 @@
-[gd_scene load_steps=5 format=3 uid="uid://n7ki3jfyoja2"]
+[gd_scene load_steps=6 format=3 uid="uid://n7ki3jfyoja2"]
 
 [ext_resource type="Script" path="res://scenes/player/player.gd" id="1_2uc45"]
 [ext_resource type="Texture2D" uid="uid://c16brhxp4m47k" path="res://assets/temporary_character.png" id="2_u6p0s"]
 [ext_resource type="PackedScene" uid="uid://2im8yh8rvp74" path="res://scenes/components/velocity_component.tscn" id="2_wr01y"]
+[ext_resource type="PackedScene" uid="uid://dbmnuupqgd28h" path="res://scenes/game_objects/flashlight/flashlight.tscn" id="4_22nyo"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_36a0o"]
 radius = 6.0
@@ -26,3 +27,6 @@ offset = Vector2(0, -12)
 visible = false
 position = Vector2(0, -6)
 shape = SubResource("CircleShape2D_36a0o")
+
+[node name="Flashlight" parent="." instance=ExtResource("4_22nyo")]
+position = Vector2(0, -8)

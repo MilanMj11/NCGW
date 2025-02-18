@@ -1,10 +1,11 @@
+res://scenes/managers
+res://scenes/UI
+res://scenes/game_objects/flashlight
 res://scenes/menu
 res://assets/fonts
 res://resources/theme
-res://scenes/managers
 res://scenes/UI/inventory
 res://autoload/GameEvents
-res://scenes/UI
 res://scenes/camera
 res://scenes/components
 res://scenes/player

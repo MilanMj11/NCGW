@@ -2,6 +2,7 @@ extends CharacterBody2D
 
 @onready var velocity_component = $VelocityComponent
 var fireplace
+var facing_direction_sign = 1
 
 
 func _ready():
@@ -14,7 +15,18 @@ func _process(delta):
 	velocity_component.accelerate_in_direction(direction)
 	velocity_component.move(self)
 	
+	face_correct_direction()
+
+
+func face_correct_direction():
+	var mouse_pos = get_global_mouse_position()
+	if mouse_pos.x < global_position.x:
+		facing_direction_sign = -1
+	else:
+		facing_direction_sign = 1
 	
+	$Visuals.scale = Vector2(-facing_direction_sign, 1)
+
 
 
 func get_movement_vector():

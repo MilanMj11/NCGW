@@ -151,3 +151,16 @@ offset_bottom = 14.0
 pivot_offset = Vector2(17, 7)
 theme_override_font_sizes/font_size = 9
 text = " Use "
+
+[node name="NameLabel" type="Label" parent="."]
+unique_name_in_owner = true
+visible = false
+layout_mode = 0
+offset_left = -41.0
+offset_top = -8.0
+offset_right = 59.0
+scale = Vector2(0.75, 0.75)
+pivot_offset = Vector2(50, 4)
+theme_override_font_sizes/font_size = 9
+text = "Cooked food"
+horizontal_alignment = 1

@@ -36,6 +36,8 @@ func _process(delta):
 	if camera_mouse_lean == true:
 		var mouse_pos = get_global_mouse_position()
 		offset = Vector2((mouse_pos.x - player.global_position.x) / (640.0 / 16.0), (mouse_pos.y - player.global_position.y) / (360.0 / 16.0))
+	else:
+		offset = Vector2.ZERO
 	
 	if current_shake_strength > 0.1:
 		current_shake_strength = lerpf(current_shake_strength, 0, shake_fade * delta)

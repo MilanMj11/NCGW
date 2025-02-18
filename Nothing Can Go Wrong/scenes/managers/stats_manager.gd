@@ -21,8 +21,8 @@ var current_stats : Dictionary = {
 
 
 func _ready():
-	set_maximum_stats()
-
+	#set_maximum_stats()
+	pass
 
 func increase_maximum_stat(type: STAT_TYPE, amount: int):
 	maximum_stats[type] += amount
@@ -39,6 +39,7 @@ func decrease_maximum_stat(type: STAT_TYPE, amount: int):
 
 func increase_stat(type: STAT_TYPE, amount: int):
 	current_stats[type] += amount
+	current_stats[type] = clamp(current_stats[type], 0, maximum_stats[type])
 	GameEvents.emit_stats_changed()
 
 

@@ -8,12 +8,19 @@ func _ready():
 	connect_to_current_scene_node()
 
 
+func get_player_screen_position():
+	var player = get_tree().get_first_node_in_group("player")
+	var camera = main_node.find_child("GameCamera")
+	# The 16 is an offset for the player height
+	return - Vector2(320, 180) + Vector2((player.position.x - camera.position.x),-(camera.position.y - player.position.y + 16))
+
+
 func switch_scene(new_scene: PackedScene):
 	
 	var player = get_tree().get_first_node_in_group("player")
 	
 	# Play the out transition and pause the tree
-	ScreenTransition.transition()
+	ScreenTransition.transition(get_player_screen_position())
 	get_tree().paused = true
 	
 	await ScreenTransition.transitioned_halfway
