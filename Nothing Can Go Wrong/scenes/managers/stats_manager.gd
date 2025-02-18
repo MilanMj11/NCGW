@@ -21,8 +21,8 @@ var current_stats : Dictionary = {
 
 
 func _ready():
-	#set_maximum_stats()
-	pass
+	set_maximum_stats()
+	#pass
 
 func increase_maximum_stat(type: STAT_TYPE, amount: int):
 	maximum_stats[type] += amount

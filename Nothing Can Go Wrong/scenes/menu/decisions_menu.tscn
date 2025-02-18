@@ -1,0 +1,223 @@
+[gd_scene load_steps=3 format=3 uid="uid://esibh2l31wrh"]
+
+[ext_resource type="Script" path="res://scenes/menu/decisions_menu.gd" id="1_npupg"]
+[ext_resource type="Texture2D" uid="uid://qglc6pv5mnp1" path="res://assets/icons/energy_icon.png" id="2_yda4q"]
+
+[node name="DecisionsMenu" type="CanvasLayer"]
+process_mode = 3
+layer = 5
+script = ExtResource("1_npupg")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="PanelContainer" type="PanelContainer" parent="MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_type_variation = &"AlternativePanelContainer3"
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/PanelContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 8
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="MarginContainer/PanelContainer/MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 16
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer2"]
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer2/VBoxContainer"]
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer2/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 4
+theme_override_constants/margin_top = 4
+theme_override_constants/margin_right = 4
+theme_override_constants/margin_bottom = 4
+
+[node name="ChopWoodButton" type="Button" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer2/VBoxContainer/HBoxContainer/MarginContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(281, 0)
+layout_mode = 2
+theme_override_font_sizes/font_size = 36
+toggle_mode = true
+text = " Chop wood "
+
+[node name="TextureRect" type="TextureRect" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer2/VBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(32, 32)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture = ExtResource("2_yda4q")
+expand_mode = 1
+stretch_mode = 4
+
+[node name="ChopWoodCostLabel" type="Label" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer2/VBoxContainer/HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 7
+theme_override_font_sizes/font_size = 18
+text = "x4"
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer2/VBoxContainer"]
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer2/VBoxContainer/HBoxContainer2"]
+layout_mode = 2
+theme_override_constants/margin_left = 4
+theme_override_constants/margin_top = 4
+theme_override_constants/margin_right = 4
+theme_override_constants/margin_bottom = 4
+
+[node name="HuntButton" type="Button" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer2/VBoxContainer/HBoxContainer2/MarginContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(281, 0)
+layout_mode = 2
+theme_override_font_sizes/font_size = 36
+toggle_mode = true
+text = " Hunt"
+
+[node name="TextureRect" type="TextureRect" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer2/VBoxContainer/HBoxContainer2"]
+custom_minimum_size = Vector2(32, 32)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture = ExtResource("2_yda4q")
+expand_mode = 1
+stretch_mode = 4
+
+[node name="HuntCostLabel" type="Label" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer2/VBoxContainer/HBoxContainer2"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 7
+theme_override_font_sizes/font_size = 18
+text = "x3"
+
+[node name="HBoxContainer3" type="HBoxContainer" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer2/VBoxContainer"]
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer2/VBoxContainer/HBoxContainer3"]
+layout_mode = 2
+theme_override_constants/margin_left = 4
+theme_override_constants/margin_top = 4
+theme_override_constants/margin_right = 4
+theme_override_constants/margin_bottom = 4
+
+[node name="ExploreButton" type="Button" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer2/VBoxContainer/HBoxContainer3/MarginContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(281, 0)
+layout_mode = 2
+theme_override_font_sizes/font_size = 36
+toggle_mode = true
+text = " Explore "
+
+[node name="TextureRect" type="TextureRect" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer2/VBoxContainer/HBoxContainer3"]
+custom_minimum_size = Vector2(32, 32)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture = ExtResource("2_yda4q")
+expand_mode = 1
+stretch_mode = 4
+
+[node name="ExploreCostLabel" type="Label" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer2/VBoxContainer/HBoxContainer3"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 7
+theme_override_font_sizes/font_size = 18
+text = "x3"
+
+[node name="HBoxContainer4" type="HBoxContainer" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer2/VBoxContainer"]
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer2/VBoxContainer/HBoxContainer4"]
+layout_mode = 2
+theme_override_constants/margin_left = 4
+theme_override_constants/margin_top = 4
+theme_override_constants/margin_right = 4
+theme_override_constants/margin_bottom = 4
+
+[node name="RestButton" type="Button" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer2/VBoxContainer/HBoxContainer4/MarginContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(281, 0)
+layout_mode = 2
+theme_override_font_sizes/font_size = 36
+toggle_mode = true
+text = " Rest "
+
+[node name="TextureRect" type="TextureRect" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer2/VBoxContainer/HBoxContainer4"]
+custom_minimum_size = Vector2(32, 32)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture = ExtResource("2_yda4q")
+expand_mode = 1
+stretch_mode = 4
+
+[node name="RestCostLabel" type="Label" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer2/VBoxContainer/HBoxContainer4"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 7
+theme_override_font_sizes/font_size = 18
+text = "x0"
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer2"]
+layout_mode = 2
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_right = 8
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer2/MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="Label" type="Label" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer2/MarginContainer/HBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 7
+theme_override_font_sizes/font_size = 27
+text = "Cost:"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer2/MarginContainer/HBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 1
+
+[node name="TextureRect" type="TextureRect" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer2/MarginContainer/HBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(32, 32)
+layout_mode = 2
+texture = ExtResource("2_yda4q")
+expand_mode = 1
+stretch_mode = 4
+
+[node name="CostLabel" type="Label" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer2/MarginContainer/HBoxContainer/HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 7
+theme_override_font_sizes/font_size = 18
+text = "x5"
+
+[node name="ConfirmButton" type="Button" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer2/MarginContainer/HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_font_sizes/font_size = 27
+text = " Confirm "

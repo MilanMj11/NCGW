@@ -1,4 +1,4 @@
-[gd_resource type="Theme" load_steps=8 format=3 uid="uid://bgquwgy330vh1"]
+[gd_resource type="Theme" load_steps=10 format=3 uid="uid://bgquwgy330vh1"]
 
 [ext_resource type="Texture2D" uid="uid://c1mg8a70slo67" path="res://assets/UI_images/UI_elements.png" id="1_u5o2b"]
 
@@ -10,12 +10,28 @@ texture_margin_right = 4.0
 texture_margin_bottom = 3.0
 region_rect = Rect2(0, 0, 16, 16)
 
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_wkvwe"]
+texture = ExtResource("1_u5o2b")
+texture_margin_left = 3.0
+texture_margin_top = 3.0
+texture_margin_right = 3.0
+texture_margin_bottom = 3.0
+region_rect = Rect2(52, 20, 8, 8)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_52qb7"]
+texture = ExtResource("1_u5o2b")
+texture_margin_left = 4.0
+texture_margin_top = 6.0
+texture_margin_right = 4.0
+texture_margin_bottom = 4.0
+region_rect = Rect2(0, 32, 16, 16)
+
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_b73vc"]
 texture = ExtResource("1_u5o2b")
-texture_margin_left = 2.0
-texture_margin_top = 2.0
-texture_margin_right = 2.0
-texture_margin_bottom = 2.0
+texture_margin_left = 3.0
+texture_margin_top = 3.0
+texture_margin_right = 3.0
+texture_margin_bottom = 3.0
 region_rect = Rect2(36, 4, 8, 8)
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_6cwpw"]
@@ -45,8 +61,13 @@ texture_margin_bottom = 3.0
 region_rect = Rect2(52, 4, 8, 8)
 
 [resource]
+AlternativeButton/base_type = &"Button"
 AlternativePanelContainer/base_type = &"PanelContainer"
 AlternativePanelContainer/styles/panel = SubResource("StyleBoxTexture_mam0m")
+AlternativePanelContainer2/base_type = &"PanelContainer"
+AlternativePanelContainer2/styles/panel = SubResource("StyleBoxTexture_wkvwe")
+AlternativePanelContainer3/base_type = &"PanelContainer"
+AlternativePanelContainer3/styles/panel = SubResource("StyleBoxTexture_52qb7")
 Button/colors/font_color = Color(0.231373, 0.0862745, 0.0588235, 1)
 Button/colors/font_disabled_color = Color(0.130172, 0.0362875, 0.0215778, 1)
 Button/colors/font_focus_color = Color(0.231373, 0.0862745, 0.0588235, 1)

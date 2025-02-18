@@ -6,5 +6,6 @@
 [node name="Map" type="TextureRect"]
 offset_right = 40.0
 offset_bottom = 40.0
+mouse_filter = 0
 texture = ExtResource("1_g1vhf")
 script = ExtResource("2_t4n2m")

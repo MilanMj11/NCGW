@@ -2,9 +2,9 @@ extends Node
 
 signal transition_finished
 
-
 @onready var test_menu_scene = preload("res://scenes/menu/test_menu.tscn")
 @onready var inventory_menu = preload("res://scenes/menu/inventory_menu.tscn")
+@onready var decisions_menu = preload("res://scenes/menu/decisions_menu.tscn")
 
 var main_node : Node
 var current_menu_node : Node
@@ -35,8 +35,13 @@ func show_menu(menu_scene: PackedScene):
 func show_test_menu():
 	show_menu(test_menu_scene)
 
+
 func show_inventory_menu():
 	show_menu(inventory_menu)
+
+
+func show_decisions_menu():
+	show_menu(decisions_menu)
 
 
 func remove_menu():
