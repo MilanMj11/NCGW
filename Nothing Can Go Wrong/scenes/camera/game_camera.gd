@@ -1,5 +1,7 @@
 extends Camera2D
 
+signal camera_centered
+
 @export var SMOOTHING_CONSTANT = 10
 
 @export var camera_mouse_lean : bool = false
@@ -7,6 +9,9 @@ extends Camera2D
 @export var random_strength : float = 7.0
 @export var shake_fade : float = 6.5 # the higher, the faster it fades
 
+var centered_position : Vector2 = Vector2(303, 156)
+
+var camera_locked : bool = false
 var current_shake_strength : float = 0
 var rng = RandomNumberGenerator.new()
 
@@ -28,7 +33,18 @@ func randomOffset():
 	return Vector2(rng.randf_range(-current_shake_strength, current_shake_strength), rng.randf_range(-current_shake_strength, current_shake_strength))
 
 
+func center_camera():
+	lock()
+	var tween = create_tween()
+	tween.tween_property(self, "global_position", centered_position, 0.5)
+	await tween.finished
+	camera_centered.emit()
+
+
 func _process(delta):
+	if camera_locked == true:
+		return
+	
 	acquire_target()
 	global_position = global_position.lerp(target_position, 1.0 - exp(-delta * SMOOTHING_CONSTANT))
 	
@@ -46,6 +62,13 @@ func _process(delta):
 
 func set_camera_mouse_lean(value : bool):
 	camera_mouse_lean = value
+
+
+func lock():
+	camera_locked = true
+
+func unlock():
+	camera_locked = false
 
 
 func acquire_target():

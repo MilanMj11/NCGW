@@ -39,19 +39,31 @@ func _ready():
 	%HuntButton.toggled.connect(on_hunt_button_down)
 	%ExploreButton.toggled.connect(on_explore_button_down)
 	%RestButton.toggled.connect(on_rest_button_down)
+	%ConfirmButton.pressed.connect(on_confirm_button_pressed)
 
 
 func _process(delta):
 	%CostLabel.text = str(initial_energy_amount - current_energy_amount)
 	
+	var is_any_button_pressed: bool = false
+	
 	for type in BUTTON_TYPE:
+		var key = BUTTON_TYPE[type]
+		if button_to_node[key].button_pressed:
+			is_any_button_pressed = true
+		
 		if BUTTON_TYPE[type] == BUTTON_TYPE.REST:
 			continue
-		var key = BUTTON_TYPE[type]
+			
 		button_to_node[key].disabled = false
 		if button_to_energy_cost[key] > current_energy_amount and button_to_node[key].button_pressed == false:
 			button_to_node[key].disabled = true
-
+	
+	if !is_any_button_pressed:
+		%ConfirmButton.disabled = true
+	else:
+		%ConfirmButton.disabled = false
+	
 
 
 func _input(event):
@@ -109,6 +121,21 @@ func on_rest_button_down(toggled_on: bool):
 	button_selected[BUTTON_TYPE.REST] = true
 	current_energy_amount += sign * button_to_energy_cost[BUTTON_TYPE.REST]
 	'''
+
+
+func on_confirm_button_pressed():
+	stats_manager.decrease_stat(stats_manager.STAT_TYPE.ENERGY, int(%CostLabel.text))
+	$AnimationPlayer.play("out")
+	await $AnimationPlayer.animation_finished
+	GameEvents.emit_decision_menu_closed(int(%CostLabel.text))
+	
+	var bitwise_representation_of_decisions = int(%ChopWoodButton.button_pressed) * 8\
+	+ int(%HuntButton.button_pressed) * 4\
+	+ int(%ExploreButton.button_pressed) * 2\
+	+ int(%RestButton.button_pressed) * 1
+	GameEvents.emit_decisions_taken(bitwise_representation_of_decisions)
+	var menu_manager = get_tree().get_first_node_in_group("menu_manager")
+	menu_manager.remove_menu()
 
 
 func connect_to_stats_manager():

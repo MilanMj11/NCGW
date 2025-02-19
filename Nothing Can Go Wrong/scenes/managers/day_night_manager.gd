@@ -1,18 +1,139 @@
 extends Node
 
+signal half_transitioned
+signal player_returned
+
 # day = true ( Day ) , day = false ( Night ) 
 @onready var day : bool = true
 @onready var current_day : int = 0
 
+var chopped_wood : bool = false
+var hunted : bool = false
+var explored : bool = false
+var rested : bool = false
+
+
+var night_settles_messages : Array = [
+	"The night tightens\n its grip...",
+	"Night begins\n to settle...",
+	"A creeping chill\n announces the night's\n arrival...",
+	"Shadows writhe\n as the night\n takes over...",
+	"Whispers ride\n the wind as the\n night claims the land..."
+]
+
 
 func _ready():
 	#start_new_day()
-	pass
+	GameEvents.decision_menu_closed.connect(play_decision_animation)
+	GameEvents.decisions_taken.connect(set_decisions_taken)
+
+
+func set_decisions_taken(bitwise_representation):
+	rested = bool(bitwise_representation % 2)
+	bitwise_representation /= 2
+	explored = bool(bitwise_representation % 2)
+	bitwise_representation /= 2
+	hunted = bool(bitwise_representation % 2)
+	bitwise_representation /= 2
+	chopped_wood = bool(bitwise_representation % 2)
+	bitwise_representation /= 2
 
 
 func _input(event):
 	if event is InputEventKey and event.pressed and event.keycode == KEY_T:
 		start_new_day()
+
+
+func emit_half_animation():
+	half_transitioned.emit()
+
+
+func play_decision_animation(energy_consumed):
+	
+	var player = get_tree().get_first_node_in_group("player")
+	player.set_process(false)
+	player.find_child("Flashlight").find_child("PointLight2D").enabled = false
+	
+	var gamecamera = get_tree().get_first_node_in_group("game_camera")
+	gamecamera.center_camera()
+	await gamecamera.camera_centered
+	
+	if energy_consumed > 0: 
+		walk_in_and_out_of_forest()
+	else:
+		rest()
+	
+	await get_tree().create_timer(3).timeout
+	
+	# In between
+	var campsite = get_tree().get_first_node_in_group("campsite")
+	campsite.set_sunset()
+	
+	night_settles(energy_consumed)
+	await player_returned
+	player.set_process(true)
+	
+	day = false
+	GameEvents.emit_night_settled()
+	
+	# Here I subtract and add the player's resources and stats
+	# based on actions taken and randomness elements 
+	
+	print(hunted)
+	
+	
+	var sun_tween = create_tween()
+	var sun = campsite.find_child("Sun")
+	sun_tween.tween_property(sun, "color", Color(0.13, 0.03, 0.02), 15)
+	await sun_tween.finished
+	
+	# print("NOW IT'S NIGHT")
+	GameEvents.emit_middle_of_night()
+
+
+func night_settles(energy_consumed):
+	%NightMessage.text = night_settles_messages.pick_random()
+	$AnimationPlayer.play("night_message")
+	await $AnimationPlayer.animation_finished
+	
+	var gamecamera = get_tree().get_first_node_in_group("game_camera")
+	gamecamera.center_camera()
+	await gamecamera.camera_centered
+	
+	if energy_consumed > 0: 
+		walk_in_and_out_of_forest(true)
+	else:
+		rest(true)
+	
+	player_returned.emit()
+
+
+
+func rest(backwards: bool = false):
+	if backwards:
+		$AnimationPlayer.play_backwards("rest")
+	else:
+		$AnimationPlayer.play("rest")
+	
+	if !backwards:
+		await half_transitioned
+	
+	var campsite = get_tree().get_first_node_in_group("campsite")
+	campsite.player_rest(backwards)
+
+
+
+func walk_in_and_out_of_forest(backwards: bool = false):
+	if backwards:
+		$AnimationPlayer.play_backwards("walk_into_forest")
+	else:
+		$AnimationPlayer.play("walk_into_forest")
+	
+	if !backwards:
+		await half_transitioned
+	
+	var campsite = get_tree().get_first_node_in_group("campsite")
+	campsite.player_walk_in_forest(backwards)
 
 
 func start_new_day():
@@ -29,6 +150,8 @@ func start_new_day():
 	await $AnimationPlayer.animation_finished
 	
 	# This is another "in-between"
+	var campsite = get_tree().get_first_node_in_group("campsite")
+	campsite.set_morning()
 	
 	ScreenTransition.transition_second_half()
 	await ScreenTransition.transitioned_second_half

@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://gvq5w41sd8yu"]
+[gd_scene load_steps=22 format=3 uid="uid://gvq5w41sd8yu"]
 
 [ext_resource type="Texture2D" uid="uid://bwli14xpx7bux" path="res://assets/tiles/ground_tiles.png" id="1_aas6s"]
 [ext_resource type="Script" path="res://scenes/camp_site/camp_site.gd" id="1_t5w20"]
@@ -10,6 +10,60 @@
 [ext_resource type="PackedScene" uid="uid://dayslmbqfmt71" path="res://scenes/game_objects/sitting_log/sitting_log.tscn" id="8_in1jr"]
 [ext_resource type="PackedScene" uid="uid://dhf3nchvtfiaw" path="res://scenes/game_objects/backpack/backpack.tscn" id="9_x785d"]
 [ext_resource type="PackedScene" uid="uid://n7ki3jfyoja2" path="res://scenes/player/player.tscn" id="10_sjaps"]
+
+[sub_resource type="Animation" id="Animation_v5bcx"]
+resource_name = "player_walk_in_forest"
+length = 1.2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Entities/Player:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(360, 230), Vector2(484, 230)]
+}
+
+[sub_resource type="Animation" id="Animation_owfa4"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Entities/Player:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(303, 156)]
+}
+
+[sub_resource type="Animation" id="Animation_kx671"]
+resource_name = "player_rest"
+length = 1.2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Entities/Player:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1.2),
+"transitions": PackedFloat32Array(0.450624, 1),
+"update": 0,
+"values": [Vector2(330, 198), Vector2(330, 169)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_cyr4s"]
+_data = {
+"RESET": SubResource("Animation_owfa4"),
+"player_rest": SubResource("Animation_kx671"),
+"player_walk_in_forest": SubResource("Animation_v5bcx")
+}
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_wye8o"]
 texture = ExtResource("1_aas6s")
@@ -1387,9 +1441,14 @@ size = Vector2(20, 77.4862)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_8i3og"]
 size = Vector2(20, 128.301)
 
-[node name="CampSite" type="Node2D"]
+[node name="CampSite" type="Node2D" groups=["campsite"]]
 y_sort_enabled = true
 script = ExtResource("1_t5w20")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_cyr4s")
+}
 
 [node name="TileMap" type="TileMap" parent="."]
 y_sort_enabled = true
@@ -1412,8 +1471,10 @@ layer_2/tile_data = PackedInt32Array(1048574, 2555906, 28, -262138, 2555906, 28,
 color = Color(0.151356, 0.139558, 0.0503027, 1)
 
 [node name="Sun" type="PointLight2D" parent="Lighting"]
+unique_name_in_owner = true
 position = Vector2(297, 182)
-color = Color(1, 1, 0.615686, 1)
+color = Color(0.599697, 0.343402, 0.226392, 1)
+energy = 1.2
 texture = ExtResource("4_f80cr")
 texture_scale = 10.0
 
@@ -1489,4 +1550,4 @@ shape = SubResource("RectangleShape2D_8i3og")
 y_sort_enabled = true
 
 [node name="Player" parent="Entities" instance=ExtResource("10_sjaps")]
-position = Vector2(307, 151)
+position = Vector2(303, 156)

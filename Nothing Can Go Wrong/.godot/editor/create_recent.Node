@@ -1,13 +1,14 @@
+RichTextLabel
+Label
+AnimationPlayer
 HBoxContainer
 MarginContainer
 TextureRect
-Label
 VBoxContainer
 Button
 CheckButton
 PanelContainer
 CanvasLayer
-AnimationPlayer
 ColorRect
 Node
 LightOccluder2D
