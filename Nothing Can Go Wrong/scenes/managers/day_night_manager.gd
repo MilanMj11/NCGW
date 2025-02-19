@@ -39,10 +39,6 @@ func set_decisions_taken(bitwise_representation):
 	bitwise_representation /= 2
 
 
-func _input(event):
-	if event is InputEventKey and event.pressed and event.keycode == KEY_T:
-		start_new_day()
-
 
 func emit_half_animation():
 	half_transitioned.emit()
@@ -79,7 +75,14 @@ func play_decision_animation(energy_consumed):
 	# Here I subtract and add the player's resources and stats
 	# based on actions taken and randomness elements 
 	
-	print(hunted)
+	await get_tree().create_timer(2.5).timeout
+	
+	var actions_manager = get_tree().get_first_node_in_group("actions_manager")
+	actions_manager.set_actions(chopped_wood, hunted, explored, rested)
+	
+	var menu_manager = get_tree().get_first_node_in_group("menu_manager")
+	menu_manager.show_rewards_menu()
+	#print(hunted)
 	
 	
 	var sun_tween = create_tween()

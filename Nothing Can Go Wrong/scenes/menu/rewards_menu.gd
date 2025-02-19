@@ -1,0 +1,163 @@
+extends CanvasLayer
+
+var actions_manager
+
+@onready var positive_action_messages : Dictionary = {
+	"chopped_wood" : ["You've gathered plenty of wood to keep your fire going yet another night.",
+					   "More firewood collected — you're stocking up well.",
+					   "You've secured extra wood. Staying safe won’t be a problem — for now.",
+					   "Your firewood count is going up, but will it be enough?"],
+	"hunted" : ["Your hunt was successful — you've secured meat and water for now.",
+				"Fresh meat and river water added to your supplies.",
+				"The hunt went well. You’ve got enough meat and water to last a while."],
+	"explored" : ["You explored a section of the forest but came up empty-handed.",
+				  "Your exploration paid off — you found a lost backpack with some batteries and a medkit inside.",
+				  "Luck is on your side — a lost backpack with a flare gun was hidden in a bush"],
+	"rested" : ["You took a moment to breathe, regaining some energy and clarity.",
+				"You let yourself unwind today. Energy restored, sanity improving.",
+				"You rested well. Strength returned, and the creeping madness faded — for now."]
+}
+
+@onready var neutral_action_messages : Dictionary = {
+	"explored" : [ "You covered some ground, but found nothing useful.",
+				   "The forest seems unusual, but nothing found while exploring."]
+}
+
+@onready var negative_action_messages : Dictionary = {
+	"chopped_wood" : ["While gathering wood, you slipped and cut yourself. Some bandages might be needed.",
+					   "You miscalculated a swing, and now you’re nursing a nasty wound."],
+	"hunted" : ["While hunting, a wild creature lashed out at you. You got away, but you're bleeding.",
+				"In the heat of the hunt, you ran into sharp thorns. Your arms are scratched up pretty badly."],
+	"explored" : ["A sharp branch scraped your arm. It’s not deep, but it stings.",
+				  "You tripped over a fallen log and bruised yourself. Careful out there."],
+	"rested" : ["You tried to rest, but unsettling noises kept you on edge. Sanity maintains the same for now."]
+}
+
+
+@onready var gathered_sanity : int = 0
+@onready var gathered_energy : int = 0
+@onready var gathered_wood : int = 0
+@onready var gathered_food : int = 0
+@onready var gathered_water : int = 0
+@onready var gathered_battery : int = 0
+@onready var gathered_medkit : int = 0
+@onready var gathered_flaregun : int = 0
+@onready var used_hunger : int = 0
+@onready var used_thirst  : int = 0
+@onready var used_health : int = 0
+
+@onready var chopped_wood : bool = false
+@onready var hunted : bool = false
+@onready var explored : bool = false
+@onready var rested : bool = false
+
+@onready var health_lost_chopping : int = 0
+@onready var health_lost_hunting : int = 0
+@onready var health_lost_exploring : int = 0
+
+var message : String = ""
+
+
+func _ready():
+	connect_to_actions_manager()
+	update_stats_and_items()
+	construct_message()
+	$AnimationPlayer.play("write_message")
+	%ConfirmButton.pressed.connect(on_confirm_button_pressed)
+
+
+
+func construct_message():
+	# depending on stats gained and used, we display the messages.
+	if gathered_sanity == 0 and gathered_energy > 0:
+		message += negative_action_messages["rested"].pick_random() + '\n' + '\n'
+	if gathered_sanity > 0 and gathered_energy > 0:
+		message += positive_action_messages["rested"].pick_random() + '\n' + '\n'
+	
+	# Firstly the positive messages.
+	if gathered_wood > 0:
+		message += positive_action_messages["chopped_wood"].pick_random() + '\n' + '\n'
+	
+	if gathered_food > 0 or gathered_water > 0:
+		message += positive_action_messages["hunted"].pick_random() + '\n' + '\n'
+	
+	if explored:
+		if gathered_battery > 0 or gathered_medkit > 0 or gathered_flaregun > 0:
+			message += positive_action_messages["explored"].pick_random() + '\n' + '\n'
+		else:
+			message += neutral_action_messages["explored"].pick_random() + '\n' + '\n'
+	
+	if used_health > 0:
+		if health_lost_chopping:
+			message += negative_action_messages["chopped_wood"].pick_random() + '\n' + '\n'
+		if health_lost_hunting:
+			message += negative_action_messages["hunted"].pick_random() + '\n' + '\n'
+		if health_lost_exploring:
+			message += negative_action_messages["explored"].pick_random() + '\n' + '\n'
+	
+	%MessageLabel.text = message
+
+
+func update_stats_and_items():
+	
+	if actions_manager.chopped_wood == true:
+		chopped_wood = true
+		gathered_wood += randi_range(3, 5)
+		
+		used_hunger += randi_range(2, 3)
+		used_thirst += randi_range(1, 2)
+		
+		var used_health_choices = [0, 0, 0, 1, 2]
+		health_lost_chopping = used_health_choices[randi() % used_health_choices.size()]
+		used_health += health_lost_chopping
+		
+		
+	
+	if actions_manager.hunted == true:
+		hunted = true
+		gathered_food += randi_range(2, 3)
+		gathered_water += randi_range(2, 3)
+		
+		used_hunger += randi_range(1, 2)
+		used_thirst += randi_range(2, 3)
+		
+		var used_health_choices = [0, 0, 0, 1, 1, 1, 2, 3]
+		health_lost_hunting = used_health_choices[randi() % used_health_choices.size()]
+		used_health += health_lost_hunting
+	
+	if actions_manager.explored == true:
+		explored = true
+		var found_backpack_choices = [0, 0, 0, 0, 0, 0, 0, 0, 1, 1]
+		var gathered_backpack = found_backpack_choices[randi() % found_backpack_choices.size()]
+		if gathered_backpack == 1:
+			gathered_battery += randi_range(1, 2)
+			gathered_medkit += 1
+			var found_flaregun_choices = [0, 1, 1]
+			gathered_flaregun += found_flaregun_choices[randi() % found_flaregun_choices.size()]
+		
+		used_hunger += randi_range(1, 2)
+		used_thirst += randi_range(1, 2)
+		
+		var used_health_choices = [0, 0, 0, 0, 1]
+		health_lost_exploring = used_health_choices[randi() % used_health_choices.size()]
+		used_health += health_lost_exploring
+		
+	
+	if actions_manager.rested == true:
+		rested = true
+		gathered_sanity = randi_range(0, 2)
+		gathered_energy += randi_range(2, 4)
+		
+		used_hunger += 1
+		used_thirst += 1
+	
+
+
+
+func on_confirm_button_pressed():
+	var menu_manager = get_tree().get_first_node_in_group("menu_manager")
+	menu_manager.remove_menu()
+
+
+func connect_to_actions_manager():
+	actions_manager = get_tree().get_first_node_in_group("actions_manager")

@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://djfuwm3p8aos"]
+[gd_scene load_steps=10 format=3 uid="uid://djfuwm3p8aos"]
 
 [ext_resource type="Script" path="res://main/main.gd" id="1_63fsq"]
 [ext_resource type="PackedScene" uid="uid://dhogo7g153g3l" path="res://scenes/UI/hud.tscn" id="2_8fe6l"]
@@ -8,6 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://gsck5qdoluxk" path="res://scenes/managers/stats_manager.tscn" id="3_i73cn"]
 [ext_resource type="PackedScene" uid="uid://crbmreqxd5mfq" path="res://scenes/managers/menu_manager.tscn" id="5_csf30"]
 [ext_resource type="PackedScene" uid="uid://b5s64dljcmd58" path="res://scenes/managers/day_night_manager.tscn" id="6_lhc5x"]
+[ext_resource type="PackedScene" uid="uid://deefgivsd7ett" path="res://scenes/managers/actions_manager.tscn" id="7_aq41s"]
 
 [node name="Main" type="Node"]
 script = ExtResource("1_63fsq")
@@ -26,6 +27,8 @@ StatsManager = NodePath("../../Managers/StatsManager")
 [node name="MenuManager" parent="Managers" instance=ExtResource("5_csf30")]
 
 [node name="DayNightManager" parent="Managers" instance=ExtResource("6_lhc5x")]
+
+[node name="ActionsManager" parent="Managers" instance=ExtResource("7_aq41s")]
 
 [node name="GameCamera" parent="." instance=ExtResource("2_w1pis")]
 

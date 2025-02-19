@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://deefgivsd7ett"]
+
+[ext_resource type="Script" path="res://scenes/managers/actions_manager.gd" id="1_bxu86"]
+
+[node name="ActionsManager" type="Node" groups=["actions_manager"]]
+script = ExtResource("1_bxu86")

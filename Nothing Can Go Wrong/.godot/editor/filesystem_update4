@@ -20,3 +20,9 @@ res://scenes/camera/game_camera.tscn
 res://autoload/GameEvents/game_events.gd
 res://scenes/game_objects/flashlight/flashlight.tscn
 res://scenes/UI/map.gd
+res://scenes/menu/rewards_menu.tscn
+res://scenes/managers/menu_manager.gd
+res://scenes/menu/rewards_menu.gd
+res://scenes/menu/inventory_menu.tscn
+res://scenes/managers/actions_manager.tscn
+res://scenes/managers/actions_manager.gd
