@@ -1,6 +1,8 @@
 extends CharacterBody2D
 
 @onready var velocity_component = $VelocityComponent
+@onready var sanity_induction : float = 0.0
+
 var fireplace
 var facing_direction_sign = 1
 
@@ -14,6 +16,11 @@ func _process(delta):
 	var direction = movement_vector.normalized()
 	velocity_component.accelerate_in_direction(direction)
 	velocity_component.move(self)
+	
+	if sanity_induction > 100.0:
+		var stats_manager = get_tree().get_first_node_in_group("stats_manager")
+		stats_manager.decrease_stat(stats_manager.STAT_TYPE.SANITY, 1)
+		sanity_induction -= 100
 	
 	face_correct_direction()
 

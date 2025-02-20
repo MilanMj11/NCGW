@@ -7,6 +7,7 @@ signal night_settled
 signal decision_menu_closed(energy_consumed)
 signal middle_of_night
 signal decisions_taken(bitwise_representation)
+signal can_sleep
 
 
 func emit_stats_changed():
@@ -35,3 +36,7 @@ func emit_middle_of_night():
 
 func emit_decisions_taken(bitwise_representation):
 	decisions_taken.emit(bitwise_representation)
+
+
+func emit_can_sleep():
+	can_sleep.emit()

@@ -1,0 +1,16 @@
+[gd_scene load_steps=2 format=3 uid="uid://dnlifu42jp8kx"]
+
+[ext_resource type="Script" path="res://scenes/managers/enemy_manager.gd" id="1_o3ioi"]
+
+[node name="EnemyManager" type="Node" groups=["enemy_manager"]]
+script = ExtResource("1_o3ioi")
+
+[node name="SlowTimer" type="Timer" parent="."]
+wait_time = 2.5
+
+[node name="FastTimer" type="Timer" parent="."]
+autostart = true
+
+[node name="TotalTimer" type="Timer" parent="."]
+wait_time = 20.0
+one_shot = true

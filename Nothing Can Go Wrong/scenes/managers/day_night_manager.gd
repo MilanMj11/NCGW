@@ -3,6 +3,7 @@ extends Node
 signal half_transitioned
 signal player_returned
 
+
 # day = true ( Day ) , day = false ( Night ) 
 @onready var day : bool = true
 @onready var current_day : int = 0
@@ -23,9 +24,9 @@ var night_settles_messages : Array = [
 
 
 func _ready():
-	#start_new_day()
 	GameEvents.decision_menu_closed.connect(play_decision_animation)
 	GameEvents.decisions_taken.connect(set_decisions_taken)
+	start_new_day()
 
 
 func set_decisions_taken(bitwise_representation):
@@ -142,6 +143,8 @@ func walk_in_and_out_of_forest(backwards: bool = false):
 func start_new_day():
 	var stats_manager = get_tree().get_first_node_in_group("stats_manager")
 	stats_manager.increase_stat(stats_manager.STAT_TYPE.HEALTH, 1)
+	var sanity_amount = stats_manager.current_stats[stats_manager.STAT_TYPE.SANITY]
+	stats_manager.increase_stat(stats_manager.STAT_TYPE.ENERGY, sanity_amount)
 	
 	current_day += 1
 	%DayLabel.text = "DAY " + str(current_day)

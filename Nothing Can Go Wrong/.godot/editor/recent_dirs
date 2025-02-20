@@ -1,4 +1,5 @@
 res://scenes/managers
+res://scenes/enemy
 res://scenes/menu
 res://scenes/UI
 res://scenes/game_objects/flashlight

@@ -10,16 +10,17 @@ var actions_manager
 	"hunted" : ["Your hunt was successful — you've secured meat and water for now.",
 				"Fresh meat and river water added to your supplies.",
 				"The hunt went well. You’ve got enough meat and water to last a while."],
-	"explored" : ["You explored a section of the forest but came up empty-handed.",
+	"explored" : ["You've seen some footsteps, followed them and found some objects that might come in handy.",
 				  "Your exploration paid off — you found a lost backpack with some batteries and a medkit inside.",
-				  "Luck is on your side — a lost backpack with a flare gun was hidden in a bush"],
+				  "Luck is on your side — a lost backpack with some useful items was hidden in a bush"],
 	"rested" : ["You took a moment to breathe, regaining some energy and clarity.",
 				"You let yourself unwind today. Energy restored, sanity improving.",
 				"You rested well. Strength returned, and the creeping madness faded — for now."]
 }
 
 @onready var neutral_action_messages : Dictionary = {
-	"explored" : [ "You covered some ground, but found nothing useful.",
+	"explored" : [ "You explored a section of the forest but came up empty-handed.",
+				   "You covered some ground, but found nothing useful.",
 				   "The forest seems unusual, but nothing found while exploring."]
 }
 
@@ -54,6 +55,9 @@ var actions_manager
 @onready var health_lost_chopping : int = 0
 @onready var health_lost_hunting : int = 0
 @onready var health_lost_exploring : int = 0
+
+var initial_hunger
+var initial_thirst
 
 var message : String = ""
 
@@ -157,7 +161,8 @@ func update_images():
 		var container_name = "MinusContainer" + str(minus_container_count)
 		var container_node = find_child(container_name)
 		container_node.visible = true
-		container_node.find_child("Label").text = "-" + str(used_hunger)
+		var actual_used_hunger = min(used_hunger, initial_hunger)
+		container_node.find_child("Label").text = "-" + str(actual_used_hunger)
 		container_node.find_child("TextureRect").texture = stats_manager.stat_to_icon[stats_manager.STAT_TYPE.HUNGER]
 	
 	if used_thirst > 0:
@@ -165,7 +170,8 @@ func update_images():
 		var container_name = "MinusContainer" + str(minus_container_count)
 		var container_node = find_child(container_name)
 		container_node.visible = true
-		container_node.find_child("Label").text = "-" + str(used_thirst)
+		var actual_used_thirst = min(used_thirst, initial_thirst)
+		container_node.find_child("Label").text = "-" + str(actual_used_thirst)
 		container_node.find_child("TextureRect").texture = stats_manager.stat_to_icon[stats_manager.STAT_TYPE.THIRST]
 	
 	for i in range(minus_container_count, %MinusContainerBIG.get_child_count()):
@@ -185,16 +191,19 @@ func update_stats_and_items():
 	item_manager.add_items(item_manager.ITEM_TYPE.FLAREGUN, gathered_flaregun)
 	
 	# Stats:
+	initial_hunger = stats_manager.current_stats[stats_manager.STAT_TYPE.HUNGER]
 	if stats_manager.current_stats[stats_manager.STAT_TYPE.HUNGER] - used_hunger < 0:
 		used_health += randi_range(1, (-1 * (stats_manager.current_stats[stats_manager.STAT_TYPE.HUNGER] - used_hunger)))
 	stats_manager.decrease_stat(stats_manager.STAT_TYPE.HUNGER, used_hunger)
 	
+	initial_thirst = stats_manager.current_stats[stats_manager.STAT_TYPE.THIRST]
 	if stats_manager.current_stats[stats_manager.STAT_TYPE.THIRST] - used_thirst < 0:
 		used_health += randi_range(1, (-1 * (stats_manager.current_stats[stats_manager.STAT_TYPE.THIRST] - used_hunger)))
 	stats_manager.decrease_stat(stats_manager.STAT_TYPE.THIRST, used_thirst)
 	
 	stats_manager.decrease_stat(stats_manager.STAT_TYPE.HEALTH, used_health)
 	stats_manager.increase_stat(stats_manager.STAT_TYPE.SANITY, gathered_sanity)
+	stats_manager.increase_stat(stats_manager.STAT_TYPE.ENERGY, gathered_energy)
 
 
 
@@ -258,12 +267,12 @@ func determine_outcome():
 	
 	if actions_manager.explored == true:
 		explored = true
-		var found_backpack_choices = [0, 0, 0, 0, 0, 0, 0, 0, 1, 1]
+		var found_backpack_choices = [0, 0, 0, 0, 0, 0, 0, 1, 1, 1]
 		var gathered_backpack = found_backpack_choices[randi() % found_backpack_choices.size()]
 		if gathered_backpack == 1:
 			gathered_battery += randi_range(1, 2)
-			gathered_medkit += 1
-			var found_flaregun_choices = [0, 1, 1]
+			gathered_medkit += randi_range(0, 1)
+			var found_flaregun_choices = [0, 0, 1]
 			gathered_flaregun += found_flaregun_choices[randi() % found_flaregun_choices.size()]
 		
 		used_hunger += randi_range(1, 2)

@@ -9,10 +9,11 @@ radius = 18.0
 [sub_resource type="CircleShape2D" id="CircleShape2D_2o1dl"]
 radius = 5.0
 
-[node name="Backpack" type="Node2D"]
+[node name="Backpack" type="Node2D" groups=["backpack"]]
 
 [node name="MenuLoadArea2D" parent="." instance=ExtResource("1_g8ado")]
 menu_to_show = 2
+label_message = "'E' Inventory"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="MenuLoadArea2D"]
 position = Vector2(0, -1)
@@ -28,3 +29,4 @@ shape = SubResource("CircleShape2D_2o1dl")
 [node name="Sprite2D" type="Sprite2D" parent="."]
 position = Vector2(0, -6)
 texture = ExtResource("1_usi2y")
+flip_h = true

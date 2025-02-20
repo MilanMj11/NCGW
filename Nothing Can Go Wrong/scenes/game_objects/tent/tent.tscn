@@ -1,16 +1,126 @@
-[gd_scene load_steps=5 format=3 uid="uid://dcs6r3yyhomgl"]
+[gd_scene load_steps=10 format=3 uid="uid://dcs6r3yyhomgl"]
 
 [ext_resource type="Texture2D" uid="uid://bcwbbcbs3irs1" path="res://assets/props/tent_mud_pit.png" id="1_2kvhw"]
 [ext_resource type="Script" path="res://scenes/game_objects/tent/tent.gd" id="1_t8icu"]
 [ext_resource type="Texture2D" uid="uid://fltqqvcsrkf2" path="res://assets/props/tent.png" id="2_fybuj"]
 
+[sub_resource type="Animation" id="Animation_fpucr"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("PanelContainer:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("PanelContainer:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("PanelContainer:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="Animation" id="Animation_hgub8"]
+resource_name = "in"
+length = 0.4
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("PanelContainer:scale")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.4),
+"transitions": PackedFloat32Array(0.615572, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(0.75, 0.75)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("PanelContainer:position")
+tracks/1/interp = 2
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.4),
+"transitions": PackedFloat32Array(0.554785, 1),
+"update": 0,
+"values": [Vector2(-32, -12), Vector2(-32, -50)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("PanelContainer:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.125),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, true]
+}
+
+[sub_resource type="Animation" id="Animation_anast"]
+resource_name = "out"
+length = 0.4
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("PanelContainer:scale")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.4),
+"transitions": PackedFloat32Array(1, 0.732043),
+"update": 0,
+"values": [Vector2(0.75, 0.75), Vector2(0, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_lxfqn"]
+_data = {
+"RESET": SubResource("Animation_fpucr"),
+"in": SubResource("Animation_hgub8"),
+"out": SubResource("Animation_anast")
+}
+
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_g0b5i"]
 radius = 8.0
 height = 38.0
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_rlcgt"]
+radius = 24.0
+
 [node name="Tent" type="Node2D"]
 y_sort_enabled = true
 script = ExtResource("1_t8icu")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_lxfqn")
+}
 
 [node name="StaticBody2D" type="StaticBody2D" parent="."]
 position = Vector2(-1, -1)
@@ -35,3 +145,23 @@ offset = Vector2(0, 19)
 y_sort_enabled = true
 position = Vector2(0, -8)
 texture = ExtResource("2_fybuj")
+
+[node name="PanelContainer" type="PanelContainer" parent="."]
+visible = false
+offset_right = 78.0
+offset_bottom = 23.0
+pivot_offset = Vector2(32, 12)
+theme_type_variation = &"AlternativePanelContainer"
+
+[node name="Label" type="Label" parent="PanelContainer"]
+layout_mode = 2
+text = " 'E' to sleep "
+horizontal_alignment = 1
+
+[node name="InteractArea" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="InteractArea"]
+position = Vector2(9, -10)
+shape = SubResource("CircleShape2D_rlcgt")

@@ -1,0 +1,31 @@
+[gd_scene load_steps=4 format=3 uid="uid://cg1pnjfo23j5u"]
+
+[ext_resource type="Script" path="res://scenes/enemy/enemy.gd" id="1_p4nlw"]
+[ext_resource type="Texture2D" uid="uid://mv20mtc4gdj8" path="res://assets/ghosts/ghost1.png" id="2_8rm8k"]
+[ext_resource type="Texture2D" uid="uid://lwbvs3raqw3w" path="res://assets/environment/2d_lights_and_shadows_neutral_point_light.webp" id="3_ky80q"]
+
+[node name="Enemy" type="Node2D"]
+z_index = 2
+scale = Vector2(0.8, 0.8)
+script = ExtResource("1_p4nlw")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_8rm8k")
+offset = Vector2(0, -3)
+
+[node name="PointLight2D" type="PointLight2D" parent="."]
+position = Vector2(7, -4)
+energy = 3.0
+texture = ExtResource("3_ky80q")
+texture_scale = 0.04
+
+[node name="PointLight2D2" type="PointLight2D" parent="."]
+position = Vector2(-7, -4)
+energy = 3.0
+texture = ExtResource("3_ky80q")
+texture_scale = 0.04
+
+[node name="LifeTime" type="Timer" parent="."]
+wait_time = 20.0
+one_shot = true
+autostart = true
