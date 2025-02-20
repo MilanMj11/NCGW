@@ -60,10 +60,141 @@ var message : String = ""
 
 func _ready():
 	connect_to_actions_manager()
-	update_stats_and_items()
+	determine_outcome()
 	construct_message()
+	update_stats_and_items()
+	update_images()
 	$AnimationPlayer.play("write_message")
 	%ConfirmButton.pressed.connect(on_confirm_button_pressed)
+
+
+func update_images():
+	var stats_manager = get_tree().get_first_node_in_group("stats_manager")
+	var item_manager = get_tree().get_first_node_in_group("item_manager")
+	
+	# Plus Containers
+	var plus_containers_count = 0
+	if gathered_wood > 0:
+		plus_containers_count += 1
+		var container_name = "PlusContainer" + str(plus_containers_count)
+		var container_node = find_child(container_name)
+		container_node.visible = true
+		container_node.find_child("Label").text = "+" + str(gathered_wood)
+		container_node.find_child("TextureRect").texture = item_manager.item_to_icon[item_manager.ITEM_TYPE.WOOD]
+	
+	if gathered_food > 0:
+		plus_containers_count += 1
+		var container_name = "PlusContainer" + str(plus_containers_count)
+		var container_node = find_child(container_name)
+		container_node.visible = true
+		container_node.find_child("Label").text = "+" + str(gathered_food)
+		container_node.find_child("TextureRect").texture = item_manager.item_to_icon[item_manager.ITEM_TYPE.RAW_FOOD]
+	
+	if gathered_water > 0:
+		plus_containers_count += 1
+		var container_name = "PlusContainer" + str(plus_containers_count)
+		var container_node = find_child(container_name)
+		container_node.visible = true
+		container_node.find_child("Label").text = "+" + str(gathered_water)
+		container_node.find_child("TextureRect").texture = item_manager.item_to_icon[item_manager.ITEM_TYPE.WATER]
+	
+	if gathered_battery > 0:
+		plus_containers_count += 1
+		var container_name = "PlusContainer" + str(plus_containers_count)
+		var container_node = find_child(container_name)
+		container_node.visible = true
+		container_node.find_child("Label").text = "+" + str(gathered_battery)
+		container_node.find_child("TextureRect").texture = item_manager.item_to_icon[item_manager.ITEM_TYPE.BATTERY]
+	
+	if gathered_flaregun > 0:
+		plus_containers_count += 1
+		var container_name = "PlusContainer" + str(plus_containers_count)
+		var container_node = find_child(container_name)
+		container_node.visible = true
+		container_node.find_child("Label").text = "+" + str(gathered_flaregun)
+		container_node.find_child("TextureRect").texture = item_manager.item_to_icon[item_manager.ITEM_TYPE.FLAREGUN]
+	
+	if gathered_medkit > 0:
+		plus_containers_count += 1
+		var container_name = "PlusContainer" + str(plus_containers_count)
+		var container_node = find_child(container_name)
+		container_node.visible = true
+		container_node.find_child("Label").text = "+" + str(gathered_medkit)
+		container_node.find_child("TextureRect").texture = item_manager.item_to_icon[item_manager.ITEM_TYPE.MEDKIT]
+	
+	if gathered_sanity > 0:
+		plus_containers_count += 1
+		var container_name = "PlusContainer" + str(plus_containers_count)
+		var container_node = find_child(container_name)
+		container_node.visible = true
+		container_node.find_child("Label").text = "+" + str(gathered_sanity)
+		container_node.find_child("TextureRect").texture = stats_manager.stat_to_icon[stats_manager.STAT_TYPE.SANITY]
+	
+	if gathered_energy > 0:
+		plus_containers_count += 1
+		var container_name = "PlusContainer" + str(plus_containers_count)
+		var container_node = find_child(container_name)
+		container_node.visible = true
+		container_node.find_child("Label").text = "+" + str(gathered_energy)
+		container_node.find_child("TextureRect").texture = stats_manager.stat_to_icon[stats_manager.STAT_TYPE.ENERGY]
+	
+	for i in range(plus_containers_count, %PlusContainerBIG.get_child_count()):
+		%PlusContainerBIG.get_child(i).visible = false
+	
+	
+	# Minus Containers
+	var minus_container_count = 0
+	if used_health > 0:
+		minus_container_count += 1
+		var container_name = "MinusContainer" + str(minus_container_count)
+		var container_node = find_child(container_name)
+		container_node.visible = true
+		container_node.find_child("Label").text = "-" + str(used_health)
+		container_node.find_child("TextureRect").texture = stats_manager.stat_to_icon[stats_manager.STAT_TYPE.HEALTH]
+	
+	if used_hunger > 0:
+		minus_container_count += 1
+		var container_name = "MinusContainer" + str(minus_container_count)
+		var container_node = find_child(container_name)
+		container_node.visible = true
+		container_node.find_child("Label").text = "-" + str(used_hunger)
+		container_node.find_child("TextureRect").texture = stats_manager.stat_to_icon[stats_manager.STAT_TYPE.HUNGER]
+	
+	if used_thirst > 0:
+		minus_container_count += 1
+		var container_name = "MinusContainer" + str(minus_container_count)
+		var container_node = find_child(container_name)
+		container_node.visible = true
+		container_node.find_child("Label").text = "-" + str(used_thirst)
+		container_node.find_child("TextureRect").texture = stats_manager.stat_to_icon[stats_manager.STAT_TYPE.THIRST]
+	
+	for i in range(minus_container_count, %MinusContainerBIG.get_child_count()):
+		%MinusContainerBIG.get_child(i).visible = false
+
+
+func update_stats_and_items():
+	var stats_manager = get_tree().get_first_node_in_group("stats_manager")
+	var item_manager = get_tree().get_first_node_in_group("item_manager")
+	
+	# Items:
+	item_manager.add_items(item_manager.ITEM_TYPE.WOOD, gathered_wood)
+	item_manager.add_items(item_manager.ITEM_TYPE.RAW_FOOD, gathered_food)
+	item_manager.add_items(item_manager.ITEM_TYPE.WATER, gathered_water)
+	item_manager.add_items(item_manager.ITEM_TYPE.BATTERY, gathered_battery)
+	item_manager.add_items(item_manager.ITEM_TYPE.MEDKIT, gathered_medkit)
+	item_manager.add_items(item_manager.ITEM_TYPE.FLAREGUN, gathered_flaregun)
+	
+	# Stats:
+	if stats_manager.current_stats[stats_manager.STAT_TYPE.HUNGER] - used_hunger < 0:
+		used_health += randi_range(1, (-1 * (stats_manager.current_stats[stats_manager.STAT_TYPE.HUNGER] - used_hunger)))
+	stats_manager.decrease_stat(stats_manager.STAT_TYPE.HUNGER, used_hunger)
+	
+	if stats_manager.current_stats[stats_manager.STAT_TYPE.THIRST] - used_thirst < 0:
+		used_health += randi_range(1, (-1 * (stats_manager.current_stats[stats_manager.STAT_TYPE.THIRST] - used_hunger)))
+	stats_manager.decrease_stat(stats_manager.STAT_TYPE.THIRST, used_thirst)
+	
+	stats_manager.decrease_stat(stats_manager.STAT_TYPE.HEALTH, used_health)
+	stats_manager.increase_stat(stats_manager.STAT_TYPE.SANITY, gathered_sanity)
 
 
 
@@ -98,7 +229,7 @@ func construct_message():
 	%MessageLabel.text = message
 
 
-func update_stats_and_items():
+func determine_outcome():
 	
 	if actions_manager.chopped_wood == true:
 		chopped_wood = true
@@ -116,7 +247,7 @@ func update_stats_and_items():
 	if actions_manager.hunted == true:
 		hunted = true
 		gathered_food += randi_range(2, 3)
-		gathered_water += randi_range(2, 3)
+		gathered_water += randi_range(2, 4)
 		
 		used_hunger += randi_range(1, 2)
 		used_thirst += randi_range(2, 3)

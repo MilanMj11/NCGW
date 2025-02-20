@@ -4,11 +4,11 @@ class_name StatsManager
 enum STAT_TYPE {HUNGER, THIRST, HEALTH, SANITY, ENERGY}
 
 var current_stats : Dictionary = {
-	STAT_TYPE.HUNGER : 0,
-	STAT_TYPE.THIRST : 0,
-	STAT_TYPE.HEALTH : 0,
+	STAT_TYPE.HUNGER : 1,
+	STAT_TYPE.THIRST : 2,
+	STAT_TYPE.HEALTH : 10,
 	STAT_TYPE.SANITY : 0,
-	STAT_TYPE.ENERGY : 0,
+	STAT_TYPE.ENERGY : 10,
 }
 
 @onready var maximum_stats : Dictionary = {
@@ -19,10 +19,18 @@ var current_stats : Dictionary = {
 	STAT_TYPE.ENERGY : 10,
 }
 
+@onready var stat_to_icon : Dictionary = {
+	STAT_TYPE.HUNGER : preload("res://assets/icons/hunger_icon.png"),
+	STAT_TYPE.THIRST : preload("res://assets/icons/water_icon.png"),
+	STAT_TYPE.HEALTH : preload("res://assets/icons/health_icon.png"),
+	STAT_TYPE.SANITY : preload("res://assets/icons/sanity_icon.png"),
+	STAT_TYPE.ENERGY : preload("res://assets/icons/energy_icon.png")
+}
+
 
 func _ready():
-	set_maximum_stats()
-	#pass
+	#set_maximum_stats()
+	pass
 
 func increase_maximum_stat(type: STAT_TYPE, amount: int):
 	maximum_stats[type] += amount
@@ -34,6 +42,7 @@ func decrease_maximum_stat(type: STAT_TYPE, amount: int):
 		push_error("CANNOT DECREASE MAXIMUM STAT WITH MORE THAN YOU HAVE")
 	
 	maximum_stats[type] -= amount
+	maximum_stats[type] = clamp(maximum_stats[type], 0, 15)
 	GameEvents.emit_stats_changed()
 
 
@@ -44,10 +53,11 @@ func increase_stat(type: STAT_TYPE, amount: int):
 
 
 func decrease_stat(type: STAT_TYPE, amount: int):
-	if current_stats[type] < amount:
-		push_error("CANNOT DECREASE CURRENT STAT WITH MORE THAN YOU HAVE")
+	#if current_stats[type] < amount:
+		#push_error("CANNOT DECREASE CURRENT STAT WITH MORE THAN YOU HAVE")
 	
 	current_stats[type] -= amount
+	current_stats[type] = clamp(current_stats[type], 0, maximum_stats[type])
 	GameEvents.emit_stats_changed()
 
 

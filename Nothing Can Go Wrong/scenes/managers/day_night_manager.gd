@@ -140,6 +140,9 @@ func walk_in_and_out_of_forest(backwards: bool = false):
 
 
 func start_new_day():
+	var stats_manager = get_tree().get_first_node_in_group("stats_manager")
+	stats_manager.increase_stat(stats_manager.STAT_TYPE.HEALTH, 1)
+	
 	current_day += 1
 	%DayLabel.text = "DAY " + str(current_day)
 	

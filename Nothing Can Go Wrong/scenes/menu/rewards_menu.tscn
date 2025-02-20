@@ -1,6 +1,23 @@
-[gd_scene load_steps=5 format=3 uid="uid://bh1k1lb23i45g"]
+[gd_scene load_steps=7 format=3 uid="uid://bh1k1lb23i45g"]
 
 [ext_resource type="Script" path="res://scenes/menu/rewards_menu.gd" id="1_ya323"]
+[ext_resource type="Texture2D" uid="uid://ctwi2gfb3ex2s" path="res://assets/icons/flaregun_icon.png" id="2_g2wv1"]
+[ext_resource type="Texture2D" uid="uid://lje3sddddi3d" path="res://assets/icons/health_icon.png" id="6_0tpks"]
+
+[sub_resource type="Animation" id="Animation_e2n3d"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("MarginContainer:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
 
 [sub_resource type="Animation" id="Animation_xjdni"]
 resource_name = "write_message"
@@ -28,21 +45,6 @@ tracks/1/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 1,
 "values": [true]
-}
-
-[sub_resource type="Animation" id="Animation_e2n3d"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("MarginContainer:visible")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [false]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_px1qc"]
@@ -133,8 +135,220 @@ There was a misterious backpack lost in the woods, inside of it was a battery an
 
 Your sanity is going down every day."
 autowrap_mode = 2
-visible_characters = 6
-visible_ratio = 0.0288462
+visible_characters = 300
+visible_ratio = 1.44231
+
+[node name="PanelContainer3" type="PanelContainer" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_type_variation = &"AlternativePanelContainer"
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/PanelContainer3"]
+layout_mode = 2
+theme_override_constants/margin_left = 4
+theme_override_constants/margin_right = 4
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/PanelContainer3/MarginContainer"]
+layout_mode = 2
+
+[node name="PlusContainerBIG" type="HBoxContainer" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/PanelContainer3/MarginContainer/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_constants/separation = 16
+
+[node name="PlusContainer1" type="HBoxContainer" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/PanelContainer3/MarginContainer/VBoxContainer/PlusContainerBIG"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_constants/separation = 0
+
+[node name="Label" type="Label" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/PanelContainer3/MarginContainer/VBoxContainer/PlusContainerBIG/PlusContainer1"]
+layout_mode = 2
+theme_override_colors/font_outline_color = Color(0.130172, 0.0362875, 0.0215778, 1)
+theme_override_constants/outline_size = 9
+theme_override_font_sizes/font_size = 36
+text = "+1"
+
+[node name="TextureRect" type="TextureRect" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/PanelContainer3/MarginContainer/VBoxContainer/PlusContainerBIG/PlusContainer1"]
+custom_minimum_size = Vector2(48, 48)
+layout_mode = 2
+texture = ExtResource("2_g2wv1")
+expand_mode = 1
+stretch_mode = 4
+
+[node name="PlusContainer2" type="HBoxContainer" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/PanelContainer3/MarginContainer/VBoxContainer/PlusContainerBIG"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_constants/separation = 0
+
+[node name="Label" type="Label" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/PanelContainer3/MarginContainer/VBoxContainer/PlusContainerBIG/PlusContainer2"]
+layout_mode = 2
+theme_override_colors/font_outline_color = Color(0.130172, 0.0362875, 0.0215778, 1)
+theme_override_constants/outline_size = 9
+theme_override_font_sizes/font_size = 36
+text = "+1"
+
+[node name="TextureRect" type="TextureRect" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/PanelContainer3/MarginContainer/VBoxContainer/PlusContainerBIG/PlusContainer2"]
+custom_minimum_size = Vector2(48, 48)
+layout_mode = 2
+texture = ExtResource("2_g2wv1")
+expand_mode = 1
+stretch_mode = 4
+
+[node name="PlusContainer3" type="HBoxContainer" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/PanelContainer3/MarginContainer/VBoxContainer/PlusContainerBIG"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_constants/separation = 0
+
+[node name="Label" type="Label" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/PanelContainer3/MarginContainer/VBoxContainer/PlusContainerBIG/PlusContainer3"]
+layout_mode = 2
+theme_override_colors/font_outline_color = Color(0.130172, 0.0362875, 0.0215778, 1)
+theme_override_constants/outline_size = 9
+theme_override_font_sizes/font_size = 36
+text = "+1"
+
+[node name="TextureRect" type="TextureRect" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/PanelContainer3/MarginContainer/VBoxContainer/PlusContainerBIG/PlusContainer3"]
+custom_minimum_size = Vector2(48, 48)
+layout_mode = 2
+texture = ExtResource("2_g2wv1")
+expand_mode = 1
+stretch_mode = 4
+
+[node name="PlusContainer4" type="HBoxContainer" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/PanelContainer3/MarginContainer/VBoxContainer/PlusContainerBIG"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_constants/separation = 0
+
+[node name="Label" type="Label" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/PanelContainer3/MarginContainer/VBoxContainer/PlusContainerBIG/PlusContainer4"]
+layout_mode = 2
+theme_override_colors/font_outline_color = Color(0.130172, 0.0362875, 0.0215778, 1)
+theme_override_constants/outline_size = 9
+theme_override_font_sizes/font_size = 36
+text = "+1"
+
+[node name="TextureRect" type="TextureRect" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/PanelContainer3/MarginContainer/VBoxContainer/PlusContainerBIG/PlusContainer4"]
+custom_minimum_size = Vector2(48, 48)
+layout_mode = 2
+texture = ExtResource("2_g2wv1")
+expand_mode = 1
+stretch_mode = 4
+
+[node name="PlusContainer5" type="HBoxContainer" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/PanelContainer3/MarginContainer/VBoxContainer/PlusContainerBIG"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_constants/separation = 0
+
+[node name="Label" type="Label" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/PanelContainer3/MarginContainer/VBoxContainer/PlusContainerBIG/PlusContainer5"]
+layout_mode = 2
+theme_override_colors/font_outline_color = Color(0.130172, 0.0362875, 0.0215778, 1)
+theme_override_constants/outline_size = 9
+theme_override_font_sizes/font_size = 36
+text = "+1"
+
+[node name="TextureRect" type="TextureRect" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/PanelContainer3/MarginContainer/VBoxContainer/PlusContainerBIG/PlusContainer5"]
+custom_minimum_size = Vector2(48, 48)
+layout_mode = 2
+texture = ExtResource("2_g2wv1")
+expand_mode = 1
+stretch_mode = 4
+
+[node name="PlusContainer6" type="HBoxContainer" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/PanelContainer3/MarginContainer/VBoxContainer/PlusContainerBIG"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_constants/separation = 0
+
+[node name="Label" type="Label" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/PanelContainer3/MarginContainer/VBoxContainer/PlusContainerBIG/PlusContainer6"]
+layout_mode = 2
+theme_override_colors/font_outline_color = Color(0.130172, 0.0362875, 0.0215778, 1)
+theme_override_constants/outline_size = 9
+theme_override_font_sizes/font_size = 36
+text = "+1"
+
+[node name="TextureRect" type="TextureRect" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/PanelContainer3/MarginContainer/VBoxContainer/PlusContainerBIG/PlusContainer6"]
+custom_minimum_size = Vector2(48, 48)
+layout_mode = 2
+texture = ExtResource("2_g2wv1")
+expand_mode = 1
+stretch_mode = 4
+
+[node name="MinusContainerBIG" type="HBoxContainer" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/PanelContainer3/MarginContainer/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_constants/separation = 16
+
+[node name="MinusContainer1" type="HBoxContainer" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/PanelContainer3/MarginContainer/VBoxContainer/MinusContainerBIG"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_constants/separation = 0
+
+[node name="Label" type="Label" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/PanelContainer3/MarginContainer/VBoxContainer/MinusContainerBIG/MinusContainer1"]
+layout_mode = 2
+theme_override_colors/font_outline_color = Color(0.130172, 0.0362875, 0.0215778, 1)
+theme_override_constants/outline_size = 9
+theme_override_font_sizes/font_size = 36
+text = "-2"
+
+[node name="TextureRect" type="TextureRect" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/PanelContainer3/MarginContainer/VBoxContainer/MinusContainerBIG/MinusContainer1"]
+custom_minimum_size = Vector2(48, 48)
+layout_mode = 2
+texture = ExtResource("6_0tpks")
+expand_mode = 1
+stretch_mode = 4
+
+[node name="MinusContainer2" type="HBoxContainer" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/PanelContainer3/MarginContainer/VBoxContainer/MinusContainerBIG"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_constants/separation = 0
+
+[node name="Label" type="Label" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/PanelContainer3/MarginContainer/VBoxContainer/MinusContainerBIG/MinusContainer2"]
+layout_mode = 2
+theme_override_colors/font_outline_color = Color(0.130172, 0.0362875, 0.0215778, 1)
+theme_override_constants/outline_size = 9
+theme_override_font_sizes/font_size = 36
+text = "-2"
+
+[node name="TextureRect" type="TextureRect" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/PanelContainer3/MarginContainer/VBoxContainer/MinusContainerBIG/MinusContainer2"]
+custom_minimum_size = Vector2(48, 48)
+layout_mode = 2
+texture = ExtResource("6_0tpks")
+expand_mode = 1
+stretch_mode = 4
+
+[node name="MinusContainer3" type="HBoxContainer" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/PanelContainer3/MarginContainer/VBoxContainer/MinusContainerBIG"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_constants/separation = 0
+
+[node name="Label" type="Label" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/PanelContainer3/MarginContainer/VBoxContainer/MinusContainerBIG/MinusContainer3"]
+layout_mode = 2
+theme_override_colors/font_outline_color = Color(0.130172, 0.0362875, 0.0215778, 1)
+theme_override_constants/outline_size = 9
+theme_override_font_sizes/font_size = 36
+text = "-2"
+
+[node name="TextureRect" type="TextureRect" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/PanelContainer3/MarginContainer/VBoxContainer/MinusContainerBIG/MinusContainer3"]
+custom_minimum_size = Vector2(48, 48)
+layout_mode = 2
+texture = ExtResource("6_0tpks")
+expand_mode = 1
+stretch_mode = 4
+
+[node name="MinusContainer4" type="HBoxContainer" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/PanelContainer3/MarginContainer/VBoxContainer/MinusContainerBIG"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_constants/separation = 0
+
+[node name="Label" type="Label" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/PanelContainer3/MarginContainer/VBoxContainer/MinusContainerBIG/MinusContainer4"]
+layout_mode = 2
+theme_override_colors/font_outline_color = Color(0.130172, 0.0362875, 0.0215778, 1)
+theme_override_constants/outline_size = 9
+theme_override_font_sizes/font_size = 36
+text = "-2"
+
+[node name="TextureRect" type="TextureRect" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/PanelContainer3/MarginContainer/VBoxContainer/MinusContainerBIG/MinusContainer4"]
+custom_minimum_size = Vector2(48, 48)
+layout_mode = 2
+texture = ExtResource("6_0tpks")
+expand_mode = 1
+stretch_mode = 4
 
 [node name="ConfirmButton" type="Button" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer"]
 unique_name_in_owner = true
