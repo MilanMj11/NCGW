@@ -40,6 +40,7 @@ func _ready():
 	%ExploreButton.toggled.connect(on_explore_button_down)
 	%RestButton.toggled.connect(on_rest_button_down)
 	%ConfirmButton.pressed.connect(on_confirm_button_pressed)
+	%EscButton.pressed.connect(on_esc_button_pressed)
 
 
 func _process(delta):
@@ -140,3 +141,8 @@ func on_confirm_button_pressed():
 
 func connect_to_stats_manager():
 	stats_manager = get_tree().get_first_node_in_group("stats_manager")
+
+
+func on_esc_button_pressed():
+	var menu_manager = get_tree().get_first_node_in_group("menu_manager")
+	menu_manager.remove_menu()

@@ -146,6 +146,9 @@ func start_new_day():
 	var sanity_amount = stats_manager.current_stats[stats_manager.STAT_TYPE.SANITY]
 	stats_manager.increase_stat(stats_manager.STAT_TYPE.ENERGY, sanity_amount)
 	
+	var fireplace = get_tree().get_first_node_in_group("fireplace")
+	fireplace.stop_fire()
+	
 	current_day += 1
 	%DayLabel.text = "DAY " + str(current_day)
 	

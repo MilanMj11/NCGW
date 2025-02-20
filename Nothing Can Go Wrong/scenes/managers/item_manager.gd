@@ -14,9 +14,10 @@ enum ITEM_TYPE {RAW_FOOD, COOKED_FOOD, WATER, WOOD, FLASHLIGHT, FLAREGUN, BATTER
 }
 
 
-@onready var interactable_items : Array = [ITEM_TYPE.COOKED_FOOD, ITEM_TYPE.WATER, ITEM_TYPE.FLAREGUN, ITEM_TYPE.BATTERY, ITEM_TYPE.MEDKIT]
+@onready var interactable_items : Array = [ITEM_TYPE.RAW_FOOD, ITEM_TYPE.COOKED_FOOD, ITEM_TYPE.WATER, ITEM_TYPE.FLAREGUN, ITEM_TYPE.BATTERY, ITEM_TYPE.MEDKIT]
 
 @onready var items_to_interaction_message : Dictionary = {
+	ITEM_TYPE.RAW_FOOD : "Cook",
 	ITEM_TYPE.COOKED_FOOD : "Eat",
 	ITEM_TYPE.WATER : "Drink",
 	ITEM_TYPE.FLAREGUN : "Call for Help",

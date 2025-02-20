@@ -32,7 +32,36 @@ func _input(event):
 				if button_showing == true:
 					button_showing = false
 					$AnimationPlayer.play("button_remove")
+	
+	set_button_status()
 
+
+func set_button_status():
+	if item_manager.ITEM_TYPE[self.item_type] == item_manager.ITEM_TYPE.RAW_FOOD:
+		var fireplace = get_tree().get_first_node_in_group("fireplace")
+		if fireplace.burning == false:
+			$Button.disabled = true
+		else:
+			$Button.disabled = false
+	
+	var stats_manager = get_tree().get_first_node_in_group("stats_manager")
+	if item_manager.ITEM_TYPE[self.item_type] == item_manager.ITEM_TYPE.COOKED_FOOD:
+		if stats_manager.current_stats[stats_manager.STAT_TYPE.HUNGER] == stats_manager.maximum_stats[stats_manager.STAT_TYPE.HUNGER]:
+			$Button.disabled = true
+		else:
+			$Button.disabled = false
+	
+	if item_manager.ITEM_TYPE[self.item_type] == item_manager.ITEM_TYPE.WATER:
+		if stats_manager.current_stats[stats_manager.STAT_TYPE.THIRST] == stats_manager.maximum_stats[stats_manager.STAT_TYPE.THIRST]:
+			$Button.disabled = true
+		else:
+			$Button.disabled = false
+	
+	if item_manager.ITEM_TYPE[self.item_type] == item_manager.ITEM_TYPE.MEDKIT:
+		if stats_manager.current_stats[stats_manager.STAT_TYPE.HEALTH] == stats_manager.maximum_stats[stats_manager.STAT_TYPE.HEALTH]:
+			$Button.disabled = true
+		else:
+			$Button.disabled = false
 
 
 func set_type(item_type):
@@ -100,6 +129,10 @@ func on_button_pressed():
 		var player = get_tree().get_first_node_in_group("player")
 		var flashlight = player.find_child("Flashlight")
 		flashlight.reload_battery()
+	if item_manager.ITEM_TYPE[item_type] == item_manager.ITEM_TYPE.RAW_FOOD:
+		var fireplace = get_tree().get_first_node_in_group("fireplace")
+		if fireplace.burning == true:
+			fireplace.add_to_cooking()
 	
 	
 	# Logical changes to items

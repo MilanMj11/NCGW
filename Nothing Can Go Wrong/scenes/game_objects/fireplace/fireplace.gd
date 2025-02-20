@@ -3,6 +3,8 @@ extends Node2D
 signal fireplace_lighted
 signal fireplace_extinguished
 
+@onready var cooking_stand_empty = preload("res://assets/props/cooking_stand_empty.png")
+@onready var cooking_stand = preload("res://assets/props/cooking_stand.png")
 
 @onready var fire_light = $PointLight2D
 @onready var interaction_active : bool = false
@@ -14,9 +16,12 @@ func _ready():
 	$InteractArea.body_entered.connect(on_body_entered)
 	$InteractArea.body_exited.connect(on_body_exited)
 	$BurnTimer.timeout.connect(on_burn_timer_timeout)
+	$CookingTimer.timeout.connect(on_cooking_timer_timeout)
+	$OnePieceCookTimer.timeout.connect(on_one_piece_cook_timer)
 	burning = false
 	%Fire.visible = false
 	fire_light.energy = 0.0
+
 
 
 func start_fire():
@@ -29,7 +34,6 @@ func start_fire():
 	start_light_flicker()
 	$BurnTimer.start()
 	fireplace_lighted.emit()
-		
 
 
 func stop_fire():
@@ -48,6 +52,17 @@ func _input(event):
 		if item_manager.current_items[item_manager.ITEM_TYPE.WOOD] >= 2:
 			item_manager.remove_items(item_manager.ITEM_TYPE.WOOD, 2)
 			start_fire()
+
+
+func add_to_cooking():
+	if $CookingTimer.time_left > 0:
+		$CookingTimer.wait_time += 5
+		$CookingTimer.start()
+	else:
+		$CookingTimer.start(5)
+		$OnePieceCookTimer.start()
+	
+	$CookingStand.texture = cooking_stand
 
 
 func start_light_flicker():
@@ -84,3 +99,15 @@ func on_body_exited(body: Node2D):
 		return
 	$AnimationPlayer2.play("out")
 	interaction_active = false
+
+
+func on_cooking_timer_timeout():
+	$CookingStand.texture = cooking_stand_empty
+
+
+func on_one_piece_cook_timer():
+	var item_manager = get_tree().get_first_node_in_group("item_manager")
+	item_manager.add_items(item_manager.ITEM_TYPE.COOKED_FOOD, 1)
+	
+	if $CookingTimer.time_left > 0:
+		$OnePieceCookTimer.start()
