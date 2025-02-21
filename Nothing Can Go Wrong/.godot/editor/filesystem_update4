@@ -38,3 +38,7 @@ res://autoload/AudioManager/audio_manager.tscn
 res://autoload/AudioManager/audio_manager.gd
 res://resources/scripts/sound_effect_resource.gd
 res://assets/sound_effects/testing_sound.tres
+res://scenes/menu/rewards_menu.tscn
+res://scenes/menu/rewards_menu.gd
+res://scenes/managers/item_manager.tscn
+res://scenes/managers/item_manager.gd

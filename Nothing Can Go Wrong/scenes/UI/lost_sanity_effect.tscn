@@ -31,7 +31,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0, 5),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [0.05, 0.85]
+"values": [0.05, 0.7]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_wj244"]
@@ -55,4 +55,4 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-color = Color(1, 1, 1, 0.392157)
+color = Color(1, 1, 1, 0.254902)

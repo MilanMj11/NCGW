@@ -5,4 +5,4 @@
 [resource]
 shader = ExtResource("1_n2urt")
 shader_parameter/time = 22.605
-shader_parameter/intensity = 0.85
+shader_parameter/intensity = 0.0

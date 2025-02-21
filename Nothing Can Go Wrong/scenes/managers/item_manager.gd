@@ -53,13 +53,10 @@ enum ITEM_TYPE {RAW_FOOD, COOKED_FOOD, WATER, WOOD, FLASHLIGHT, FLAREGUN, BATTER
 func _ready():
 	#Callable(add_items.bind(ITEM_TYPE.FLASHLIGHT, 1)).call_deferred()
 	add_items(ITEM_TYPE.FLASHLIGHT, 1)
-	add_items(ITEM_TYPE.WATER, 3)
-	add_items(ITEM_TYPE.COOKED_FOOD, 4)
-	add_items(ITEM_TYPE.MEDKIT, 5)
-	add_items(ITEM_TYPE.WOOD, 7)
-	add_items(ITEM_TYPE.RAW_FOOD, 3)
-	add_items(ITEM_TYPE.FLAREGUN, 1)
-	add_items(ITEM_TYPE.BATTERY, 3)
+	add_items(ITEM_TYPE.WATER, 1)
+	add_items(ITEM_TYPE.COOKED_FOOD, 1)
+	add_items(ITEM_TYPE.WOOD, 3)
+	add_items(ITEM_TYPE.BATTERY, 1)
 
 
 

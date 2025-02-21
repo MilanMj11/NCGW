@@ -4,11 +4,11 @@ class_name StatsManager
 enum STAT_TYPE {HUNGER, THIRST, HEALTH, SANITY, ENERGY}
 
 var current_stats : Dictionary = {
-	STAT_TYPE.HUNGER : 2,
-	STAT_TYPE.THIRST : 3,
+	STAT_TYPE.HUNGER : 5,
+	STAT_TYPE.THIRST : 5,
 	STAT_TYPE.HEALTH : 10,
 	STAT_TYPE.SANITY : 1,
-	STAT_TYPE.ENERGY : 7,
+	STAT_TYPE.ENERGY : 10,
 }
 
 @onready var maximum_stats : Dictionary = {

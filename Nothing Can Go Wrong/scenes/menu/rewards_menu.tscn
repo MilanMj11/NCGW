@@ -135,8 +135,6 @@ There was a misterious backpack lost in the woods, inside of it was a battery an
 
 Your sanity is going down every day."
 autowrap_mode = 2
-visible_characters = 300
-visible_ratio = 1.44231
 
 [node name="PanelContainer3" type="PanelContainer" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2

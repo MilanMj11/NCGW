@@ -242,7 +242,7 @@ func determine_outcome():
 	
 	if actions_manager.chopped_wood == true:
 		chopped_wood = true
-		gathered_wood += randi_range(3, 5)
+		gathered_wood += randi_range(3, 4)
 		
 		used_hunger += randi_range(2, 3)
 		used_thirst += randi_range(1, 2)
@@ -273,6 +273,11 @@ func determine_outcome():
 			gathered_battery += randi_range(1, 2)
 			gathered_medkit += randi_range(0, 1)
 			var found_flaregun_choices = [0, 0, 1]
+			
+			var day_night_manager = get_tree().get_first_node_in_group("day_night_manager")
+			if day_night_manager.current_day < 5:
+				found_flaregun_choices = [0]
+			
 			gathered_flaregun += found_flaregun_choices[randi() % found_flaregun_choices.size()]
 		
 		used_hunger += randi_range(1, 2)

@@ -2,6 +2,7 @@ extends CanvasLayer
 
 
 func _ready():
+	get_tree().paused = false
 	%PlayButton.pressed.connect(on_play_button_pressed)
 
 
