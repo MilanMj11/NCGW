@@ -62,6 +62,13 @@ func set_button_status():
 			$Button.disabled = true
 		else:
 			$Button.disabled = false
+	
+	if item_manager.ITEM_TYPE[self.item_type] == item_manager.ITEM_TYPE.FLAREGUN:
+		var day_night_manager = get_tree().get_first_node_in_group("day_night_manager")
+		if day_night_manager.day == true:
+			$Button.disabled = true
+		else:
+			$Button.disabled = false
 
 
 func set_type(item_type):
@@ -133,6 +140,9 @@ func on_button_pressed():
 		var fireplace = get_tree().get_first_node_in_group("fireplace")
 		if fireplace.burning == true:
 			fireplace.add_to_cooking()
+	if item_manager.ITEM_TYPE[item_type] == item_manager.ITEM_TYPE.FLAREGUN:
+		var campsite = get_tree().get_first_node_in_group("campsite")
+		campsite.fire_flaregun()
 	
 	
 	# Logical changes to items

@@ -14,7 +14,6 @@
 [ext_resource type="PackedScene" uid="uid://rclnek8bam4k" path="res://scenes/UI/map.tscn" id="12_qtwvq"]
 
 [node name="HUD" type="CanvasLayer" groups=["hud"]]
-process_mode = 3
 script = ExtResource("1_b35fa")
 
 [node name="MarginContainer" type="MarginContainer" parent="."]

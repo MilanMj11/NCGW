@@ -17,10 +17,10 @@ func _process(delta):
 	velocity_component.accelerate_in_direction(direction)
 	velocity_component.move(self)
 	
-	if sanity_induction > 100.0:
+	if sanity_induction > 80.0:
 		var stats_manager = get_tree().get_first_node_in_group("stats_manager")
 		stats_manager.decrease_stat(stats_manager.STAT_TYPE.SANITY, 1)
-		sanity_induction -= 100
+		sanity_induction -= 80
 	
 	face_correct_direction()
 

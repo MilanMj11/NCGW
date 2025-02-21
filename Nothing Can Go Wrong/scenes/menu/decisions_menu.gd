@@ -125,6 +125,10 @@ func on_rest_button_down(toggled_on: bool):
 
 
 func on_confirm_button_pressed():
+	%EscButton.disabled = true
+	var map = get_tree().get_first_node_in_group("map")
+	map.available = false
+	
 	stats_manager.decrease_stat(stats_manager.STAT_TYPE.ENERGY, int(%CostLabel.text))
 	$AnimationPlayer.play("out")
 	await $AnimationPlayer.animation_finished

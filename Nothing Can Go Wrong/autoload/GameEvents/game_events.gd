@@ -8,6 +8,9 @@ signal decision_menu_closed(energy_consumed)
 signal middle_of_night
 signal decisions_taken(bitwise_representation)
 signal can_sleep
+signal lost_all_sanity
+signal flaregun_fired
+
 
 
 func emit_stats_changed():
@@ -40,3 +43,11 @@ func emit_decisions_taken(bitwise_representation):
 
 func emit_can_sleep():
 	can_sleep.emit()
+
+
+func emit_lost_all_sanity():
+	lost_all_sanity.emit()
+
+
+func emit_flaregun_fired():
+	flaregun_fired.emit()

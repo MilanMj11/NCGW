@@ -3,7 +3,7 @@
 [ext_resource type="Texture2D" uid="uid://c8dg4equcfak3" path="res://assets/icons/map_icon.png" id="1_g1vhf"]
 [ext_resource type="Script" path="res://scenes/UI/map.gd" id="2_t4n2m"]
 
-[node name="Map" type="TextureRect"]
+[node name="Map" type="TextureRect" groups=["map"]]
 offset_right = 40.0
 offset_bottom = 40.0
 mouse_filter = 0

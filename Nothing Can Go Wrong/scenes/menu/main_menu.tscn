@@ -1,0 +1,452 @@
+[gd_scene load_steps=10 format=3 uid="uid://barb7dtevbttq"]
+
+[ext_resource type="Script" path="res://scenes/menu/main_menu.gd" id="1_xcfwo"]
+[ext_resource type="Texture2D" uid="uid://cyrjv5d253426" path="res://assets/menu/main_menu.png" id="2_ose3e"]
+[ext_resource type="Shader" path="res://autoload/ScreenTransition/screen_transition.gdshader" id="3_feeux"]
+[ext_resource type="Texture2D" uid="uid://b2hpfkx1mcni8" path="res://autoload/ScreenTransition/screen_transition.png" id="4_7canm"]
+[ext_resource type="FontFile" uid="uid://dawgyheohpbe0" path="res://assets/fonts/PixelatedEleganceRegular-ovyAA.ttf" id="5_sopax"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_rxx6m"]
+shader = ExtResource("3_feeux")
+shader_parameter/transition_color = Color(0.231373, 0.0862745, 0.0588235, 1)
+shader_parameter/percent = 0.05
+shader_parameter/transition_texture = ExtResource("4_7canm")
+
+[sub_resource type="Animation" id="Animation_mtnp5"]
+resource_name = "play"
+length = 30.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ColorRect:material:shader_parameter/percent")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.8),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.05, 1.0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("MarginContainer2/WhatHappened:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.8),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, true]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("MarginContainer2/WhatToDo:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 7.9),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, true]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("MarginContainer2/RichTextLabel:visible")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 19.9),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, true]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("MarginContainer2/WhatHappened:visible_characters")
+tracks/4/interp = 2
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0.8, 4.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0, 250]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("MarginContainer2/WhatHappened:modulate")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(6.5, 7.9),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("MarginContainer2/WhatToDo:visible_characters")
+tracks/6/interp = 2
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(7.9, 14.6),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0, 300]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("MarginContainer2/WhatToDo:modulate")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(17.1, 19.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+tracks/8/type = "value"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("MarginContainer2/RichTextLabel:visible_characters")
+tracks/8/interp = 2
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"times": PackedFloat32Array(19.9862, 29.8),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0, 600]
+}
+tracks/9/type = "value"
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/path = NodePath("MarginContainer2/ContinueButton:modulate")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/keys = {
+"times": PackedFloat32Array(0, 28.6, 29.9),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+tracks/10/type = "value"
+tracks/10/imported = false
+tracks/10/enabled = true
+tracks/10/path = NodePath("MarginContainer2/ContinueButton:disabled")
+tracks/10/interp = 1
+tracks/10/loop_wrap = true
+tracks/10/keys = {
+"times": PackedFloat32Array(0, 29.9),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+
+[sub_resource type="Animation" id="Animation_3dudu"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ColorRect:material:shader_parameter/percent")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.05]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("MarginContainer2/WhatHappened:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("MarginContainer2/WhatToDo:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("MarginContainer2/RichTextLabel:visible")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("MarginContainer2/WhatHappened:visible_characters")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [-1]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("MarginContainer2/WhatHappened:modulate")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("MarginContainer2/WhatToDo:visible_characters")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [-1]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("MarginContainer2/WhatToDo:modulate")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+tracks/8/type = "value"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("MarginContainer2/RichTextLabel:visible_characters")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [-1]
+}
+tracks/9/type = "value"
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/path = NodePath("MarginContainer2/ContinueButton:modulate")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+tracks/10/type = "value"
+tracks/10/imported = false
+tracks/10/enabled = true
+tracks/10/path = NodePath("MarginContainer2/ContinueButton:disabled")
+tracks/10/interp = 1
+tracks/10/loop_wrap = true
+tracks/10/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_r6cr1"]
+_data = {
+"RESET": SubResource("Animation_3dudu"),
+"play": SubResource("Animation_mtnp5")
+}
+
+[node name="MainMenu" type="CanvasLayer"]
+script = ExtResource("1_xcfwo")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+offset_right = 1280.0
+offset_bottom = 720.0
+texture = ExtResource("2_ose3e")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_constants/separation = 260
+
+[node name="TitleLabel" type="Label" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_colors/font_color = Color(0.775234, 0.473382, 0.337297, 1)
+theme_override_colors/font_outline_color = Color(0.130172, 0.0362875, 0.0215778, 1)
+theme_override_constants/outline_size = 22
+theme_override_font_sizes/font_size = 72
+text = "STRANDED FOREVER?"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_constants/separation = 28
+
+[node name="PlayButton" type="Button" parent="MarginContainer/VBoxContainer/VBoxContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(440, 61)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_colors/font_outline_color = Color(0.130172, 0.0362875, 0.0215778, 1)
+theme_override_constants/outline_size = 12
+theme_override_font_sizes/font_size = 63
+text = " Play "
+
+[node name="OptionsButton" type="Button" parent="MarginContainer/VBoxContainer/VBoxContainer"]
+custom_minimum_size = Vector2(440, 61)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_colors/font_outline_color = Color(0.130172, 0.0362875, 0.0215778, 1)
+theme_override_constants/outline_size = 12
+theme_override_font_sizes/font_size = 63
+text = " Options "
+
+[node name="ExitButton" type="Button" parent="MarginContainer/VBoxContainer/VBoxContainer"]
+custom_minimum_size = Vector2(440, 61)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_colors/font_outline_color = Color(0.130172, 0.0362875, 0.0215778, 1)
+theme_override_constants/outline_size = 12
+theme_override_font_sizes/font_size = 63
+text = " Exit "
+
+[node name="ColorRect" type="ColorRect" parent="."]
+material = SubResource("ShaderMaterial_rxx6m")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0.231373, 0.0862745, 0.0588235, 1)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_r6cr1")
+}
+
+[node name="MarginContainer2" type="MarginContainer" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_override_constants/margin_bottom = 16
+
+[node name="WhatHappened" type="Label" parent="MarginContainer2"]
+visible = false
+custom_minimum_size = Vector2(900, 300)
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_font_sizes/font_size = 36
+text = "You got lost in the woods and set up your tent and campfire in a clearing. Now, you must survive as long as possible until help arrives. 
+
+Everything seems normal at first, but something about the forest makes you think you are not safe."
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
+visible_ratio = -0.00421941
+
+[node name="WhatToDo" type="Label" parent="MarginContainer2"]
+visible = false
+custom_minimum_size = Vector2(900, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_font_sizes/font_size = 36
+text = "Before your journey began, someone warned you that the forest is haunted, and the only thing keeping you safe is the light.
+
+Your only sources of light are the campfire and the flashlight in your backpack. 
+
+Use them wisely - the creatures fear the light."
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
+visible_ratio = -0.00392157
+
+[node name="RichTextLabel" type="RichTextLabel" parent="MarginContainer2"]
+visible = false
+custom_minimum_size = Vector2(900, 500)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_colors/default_color = Color(0.599697, 0.343402, 0.226392, 1)
+theme_override_colors/font_outline_color = Color(0.130172, 0.0362875, 0.0215778, 1)
+theme_override_constants/line_separation = 2
+theme_override_constants/outline_size = 9
+theme_override_fonts/normal_font = ExtResource("5_sopax")
+theme_override_font_sizes/normal_font_size = 27
+bbcode_enabled = true
+text = "You need to use your [color=yellow]flashlight[/color] on the creatures when the night comes.  
+Point in their direction and they will go away.  
+( Press [color=cyan]'F'[/color] to activate your flashlight ) 
+
+You need to make [color=orange]fire[/color] in order to cook your food and keep them away.  
+( Press [color=cyan]'E'[/color] to interact with objects )  
+
+In your [color=yellow]backpack[/color], you need to manage your [color=green]resources[/color] in order to survive as long as possible.  
+( Right click to interact with items )  
+
+And most important...  
+[color=red]Keep. Your. Sanity.[/color]  
+Once it's gone, [color=red]you never gain it back[/color]."
+scroll_active = false
+autowrap_mode = 2
+tab_size = 5
+
+[node name="ContinueButton" type="Button" parent="MarginContainer2"]
+unique_name_in_owner = true
+modulate = Color(1, 1, 1, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 8
+theme_override_font_sizes/font_size = 45
+text = "Continue"

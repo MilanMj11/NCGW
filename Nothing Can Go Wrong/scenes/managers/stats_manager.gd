@@ -7,7 +7,7 @@ var current_stats : Dictionary = {
 	STAT_TYPE.HUNGER : 2,
 	STAT_TYPE.THIRST : 3,
 	STAT_TYPE.HEALTH : 10,
-	STAT_TYPE.SANITY : 6,
+	STAT_TYPE.SANITY : 1,
 	STAT_TYPE.ENERGY : 7,
 }
 
@@ -57,13 +57,20 @@ func decrease_stat(type: STAT_TYPE, amount: int):
 	#if current_stats[type] < amount:
 		#push_error("CANNOT DECREASE CURRENT STAT WITH MORE THAN YOU HAVE")
 	
+	if current_stats[type] == 0:
+		return
+	
 	current_stats[type] -= amount
 	current_stats[type] = clamp(current_stats[type], 0, maximum_stats[type])
 	
 	if current_stats[STAT_TYPE.SANITY] < 6:
 		maximum_stats[STAT_TYPE.ENERGY] = min(10 - (6 - current_stats[STAT_TYPE.SANITY]), maximum_stats[STAT_TYPE.ENERGY])
 		current_stats[STAT_TYPE.ENERGY] = min(maximum_stats[STAT_TYPE.ENERGY], current_stats[STAT_TYPE.ENERGY])
-		
+	
+	
+	if type == STAT_TYPE.SANITY and current_stats[STAT_TYPE.SANITY] == 0:
+		GameEvents.emit_lost_all_sanity()
+	
 	GameEvents.emit_stats_changed()
 
 

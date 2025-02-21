@@ -27,6 +27,13 @@ func transition_first_half(focus_position: Vector2 = Vector2(0, 0)):
 	transitioned_first_half.emit()
 
 
+func no_animation(focus_position: Vector2 = Vector2(0, 0)):
+	$ColorRect.position = focus_position
+	$AnimationPlayer.play("no_animation")
+	await $AnimationPlayer.animation_finished
+	transitioned_first_half.emit()
+
+
 func transition_second_half(focus_position: Vector2 = Vector2(0, 0)):
 	$ColorRect.position = focus_position
 	$AnimationPlayer.play_backwards("default")

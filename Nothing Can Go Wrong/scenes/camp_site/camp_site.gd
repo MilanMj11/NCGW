@@ -28,6 +28,12 @@ func player_rest(backwards: bool = false):
 	gamecamera.unlock()
 
 
+func fire_flaregun():
+	$AnimationPlayer.play("fire_flaregun")
+	await $AnimationPlayer.animation_finished
+	GameEvents.emit_flaregun_fired()
+
+
 func set_morning():
 	%Sun.color = Color(1, 1, 0.615)
 

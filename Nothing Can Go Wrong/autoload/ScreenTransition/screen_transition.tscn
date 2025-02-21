@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://blmcgxk44v0a7"]
+[gd_scene load_steps=9 format=3 uid="uid://blmcgxk44v0a7"]
 
 [ext_resource type="Script" path="res://autoload/ScreenTransition/screen_transition.gd" id="1_vhrjs"]
 [ext_resource type="Shader" path="res://autoload/ScreenTransition/screen_transition.gdshader" id="2_4fvgy"]
@@ -73,10 +73,27 @@ tracks/2/keys = {
 "values": [0.05, 1.0, 1.0]
 }
 
+[sub_resource type="Animation" id="Animation_10ce5"]
+resource_name = "no_animation"
+length = 0.4
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ColorRect:material:shader_parameter/percent")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.4),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [1.0, 1.0]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_k08xw"]
 _data = {
 "RESET": SubResource("Animation_180c2"),
-"default": SubResource("Animation_eabtd")
+"default": SubResource("Animation_eabtd"),
+"no_animation": SubResource("Animation_10ce5")
 }
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_705d1"]

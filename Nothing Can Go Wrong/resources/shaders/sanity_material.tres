@@ -1,0 +1,8 @@
+[gd_resource type="ShaderMaterial" load_steps=2 format=3 uid="uid://cd4qt0a5n7olu"]
+
+[ext_resource type="Shader" path="res://resources/shaders/sanity_shader.gdshader" id="1_n2urt"]
+
+[resource]
+shader = ExtResource("1_n2urt")
+shader_parameter/time = 22.605
+shader_parameter/intensity = 0.85

@@ -6,6 +6,8 @@ signal transition_finished
 @onready var inventory_menu = preload("res://scenes/menu/inventory_menu.tscn")
 @onready var decisions_menu = preload("res://scenes/menu/decisions_menu.tscn")
 @onready var rewards_menu = preload("res://scenes/menu/rewards_menu.tscn")
+@onready var end_of_game_menu = preload("res://scenes/menu/end_of_game_menu.tscn")
+@onready var lost_menu = preload("res://scenes/menu/lost_menu.tscn")
 
 
 var main_node : Node
@@ -48,6 +50,14 @@ func show_decisions_menu():
 
 func show_rewards_menu():
 	show_menu(rewards_menu)
+
+
+func show_end_of_game_menu():
+	show_menu(end_of_game_menu)
+
+
+func show_lost_menu():
+	show_menu(lost_menu)
 
 
 func remove_menu():

@@ -140,8 +140,103 @@ func walk_in_and_out_of_forest(backwards: bool = false):
 	campsite.player_walk_in_forest(backwards)
 
 
+func helpers_arrived():
+	%DayLabel.text = "HELPERS\n ARRIVED"
+	
+	get_tree().paused = true
+	ScreenTransition.transition_first_half()
+	await ScreenTransition.transitioned_first_half
+	
+	# This is one "in-between"
+	var campsite = get_tree().get_first_node_in_group("campsite")
+	campsite.find_child("Helpers").visible = true
+	
+	$AnimationPlayer.play("show_day")
+	await $AnimationPlayer.animation_finished
+	
+	# This is another "in-between"
+	campsite.set_morning()
+	
+	ScreenTransition.transition_second_half()
+	await ScreenTransition.transitioned_second_half
+	get_tree().paused = false
+	
+	await get_tree().create_timer(3).timeout
+	
+	var menu_manager = get_tree().get_first_node_in_group("menu_manager")
+	menu_manager.show_end_of_game_menu()
+
+
+
+func rest_crazy():
+	%DayLabel.text = "GONE CRAZY"
+	
+	get_tree().paused = true
+	ScreenTransition.transition_first_half()
+	await ScreenTransition.transitioned_first_half
+	
+	# This is one "in-between"
+	
+	$AnimationPlayer.play("show_day")
+	await $AnimationPlayer.animation_finished
+	
+	# This is another "in-between"
+	var game_camera = get_tree().get_first_node_in_group("game_camera")
+	game_camera.lock()
+	
+	var campsite = get_tree().get_first_node_in_group("campsite")
+	campsite.set_morning()
+	
+	var player = get_tree().get_first_node_in_group("player")
+	player.visible = false
+	
+	ScreenTransition.transition_second_half()
+	await ScreenTransition.transitioned_second_half
+	get_tree().paused = false
+	
+	await get_tree().create_timer(3).timeout
+	game_camera.unlock()
+	
+	var menu_manager = get_tree().get_first_node_in_group("menu_manager")
+	menu_manager.show_lost_menu()
+
+
+func play_first_day():
+	%DayLabel.text = "DAY " + str(current_day)
+	
+	get_tree().paused = true
+	ScreenTransition.no_animation()
+	await ScreenTransition.transitioned_first_half
+	
+	$AnimationPlayer.play("show_day")
+	await $AnimationPlayer.animation_finished
+	
+	# This is another "in-between"
+	var campsite = get_tree().get_first_node_in_group("campsite")
+	campsite.set_morning()
+	
+	ScreenTransition.transition_second_half()
+	await ScreenTransition.transitioned_second_half
+	get_tree().paused = false
+	
+	GameEvents.emit_day_changed(current_day)
+	
+	day = true
+
+
 func start_new_day():
 	var stats_manager = get_tree().get_first_node_in_group("stats_manager")
+	if stats_manager.current_stats[stats_manager.STAT_TYPE.SANITY] == 0:
+		rest_crazy()
+		return
+	
+	
+	var main_node = get_tree().get_first_node_in_group("main")
+	if main_node.helpers_come == true:
+		helpers_arrived()
+		return
+	
+	
 	stats_manager.increase_stat(stats_manager.STAT_TYPE.HEALTH, 1)
 	var sanity_amount = stats_manager.current_stats[stats_manager.STAT_TYPE.SANITY]
 	stats_manager.increase_stat(stats_manager.STAT_TYPE.ENERGY, sanity_amount)
@@ -150,6 +245,11 @@ func start_new_day():
 	fireplace.stop_fire()
 	
 	current_day += 1
+	
+	if current_day == 1:
+		play_first_day()
+		return
+	
 	%DayLabel.text = "DAY " + str(current_day)
 	
 	get_tree().paused = true
