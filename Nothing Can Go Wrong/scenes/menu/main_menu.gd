@@ -3,6 +3,7 @@ extends CanvasLayer
 
 func _ready():
 	get_tree().paused = false
+	AudioManager.play_ambient_sound(SoundEffect.SOUND_EFFECT_TYPE.FOREST_DAY)
 	%PlayButton.pressed.connect(on_play_button_pressed)
 	%ExitButton.pressed.connect(on_exit_button_pressed)
 	%OptionsButton.pressed.connect(on_options_button_pressed)

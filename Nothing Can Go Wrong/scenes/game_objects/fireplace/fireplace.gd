@@ -37,7 +37,7 @@ func start_fire():
 	$BurnTimer.start()
 	fireplace_lighted.emit()
 	audio2d = AudioManager.play_sound_at_position(self.global_position, SoundEffect.SOUND_EFFECT_TYPE.FIRE)
-	$SoundTimer.start(18)
+	$SoundTimer.start(16)
 
 
 func stop_fire():
@@ -53,7 +53,7 @@ func stop_fire():
 func on_sound_timer_timeout():
 	if burning == true:
 		audio2d = AudioManager.play_sound_at_position(self.global_position, SoundEffect.SOUND_EFFECT_TYPE.FIRE)
-	$SoundTimer.start(18)
+		$SoundTimer.start(16)
 
 
 func _input(event):

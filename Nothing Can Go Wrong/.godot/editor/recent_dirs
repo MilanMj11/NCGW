@@ -1,6 +1,6 @@
+res://scenes/menu
 res://assets/sound_effects
 res://autoload/AudioManager
-res://scenes/menu
 res://resources/shaders
 res://scenes/UI
 res://scenes/managers

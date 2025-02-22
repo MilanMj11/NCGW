@@ -301,6 +301,7 @@ _data = {
 }
 
 [node name="MainMenu" type="CanvasLayer"]
+process_mode = 3
 script = ExtResource("1_xcfwo")
 
 [node name="TextureRect" type="TextureRect" parent="."]
