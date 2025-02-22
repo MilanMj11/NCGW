@@ -1,6 +1,15 @@
-[gd_scene load_steps=2 format=3 uid="uid://bhaajxf1e7ae"]
+[gd_scene load_steps=9 format=3 uid="uid://bhaajxf1e7ae"]
 
 [ext_resource type="Script" path="res://autoload/AudioManager/audio_manager.gd" id="1_7me5i"]
+[ext_resource type="Resource" uid="uid://cd8faksebhxrt" path="res://assets/sound_effects/forest_day.tres" id="2_6vilq"]
+[ext_resource type="Resource" uid="uid://n0ewh7hxafqy" path="res://assets/sound_effects/flashlight.tres" id="4_d88nr"]
+[ext_resource type="Resource" uid="uid://b10pgfnxjvjox" path="res://assets/sound_effects/forest_night.tres" id="4_tcjlg"]
+[ext_resource type="Resource" uid="uid://c061b7xcf0q1c" path="res://assets/sound_effects/button.tres" id="5_6x4k3"]
+[ext_resource type="Resource" uid="uid://bxp0nxkwkklkx" path="res://assets/sound_effects/fire.tres" id="6_v4s7s"]
+[ext_resource type="Resource" uid="uid://buaryf7dd1pfn" path="res://assets/sound_effects/whisper.tres" id="7_njl7a"]
+[ext_resource type="Resource" uid="uid://4m001ky7bncs" path="res://assets/sound_effects/map_sound.tres" id="8_171t5"]
 
 [node name="AudioManager" type="Node2D"]
+process_mode = 3
 script = ExtResource("1_7me5i")
+sound_effects_list = Array[Resource("res://resources/scripts/sound_effect_resource.gd")]([ExtResource("2_6vilq"), ExtResource("4_tcjlg"), ExtResource("4_d88nr"), ExtResource("5_6x4k3"), ExtResource("6_v4s7s"), ExtResource("7_njl7a"), ExtResource("8_171t5")])

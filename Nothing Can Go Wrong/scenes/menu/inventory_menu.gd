@@ -29,6 +29,7 @@ func update_inventory():
 
 
 func on_esc_button_pressed():
+	AudioManager.play_sound_at_position(Vector2(300, 160), SoundEffect.SOUND_EFFECT_TYPE.BUTTON_PRESSED)
 	Input.action_press("exit")
 
 

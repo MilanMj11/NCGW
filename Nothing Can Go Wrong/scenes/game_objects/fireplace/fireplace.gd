@@ -18,10 +18,12 @@ func _ready():
 	$BurnTimer.timeout.connect(on_burn_timer_timeout)
 	$CookingTimer.timeout.connect(on_cooking_timer_timeout)
 	$OnePieceCookTimer.timeout.connect(on_one_piece_cook_timer)
+	$SoundTimer.timeout.connect(on_sound_timer_timeout)
 	burning = false
 	%Fire.visible = false
 	fire_light.energy = 0.0
 
+var audio2d
 
 
 func start_fire():
@@ -34,6 +36,8 @@ func start_fire():
 	start_light_flicker()
 	$BurnTimer.start()
 	fireplace_lighted.emit()
+	audio2d = AudioManager.play_sound_at_position(self.global_position, SoundEffect.SOUND_EFFECT_TYPE.FIRE)
+	$SoundTimer.start(18)
 
 
 func stop_fire():
@@ -43,7 +47,13 @@ func stop_fire():
 	%Fire.visible = false
 	burning = false
 	fireplace_extinguished.emit()
+	audio2d.stop()
 
+
+func on_sound_timer_timeout():
+	if burning == true:
+		audio2d = AudioManager.play_sound_at_position(self.global_position, SoundEffect.SOUND_EFFECT_TYPE.FIRE)
+	$SoundTimer.start(18)
 
 
 func _input(event):

@@ -4,7 +4,7 @@
 
 [resource]
 script = ExtResource("1_jey5n")
-type = 0
+type = 2
 stream_sounds = Array[AudioStream]([])
 randomize_pitch = true
 volume = 1.0

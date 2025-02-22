@@ -23,6 +23,7 @@ func _process(delta):
 
 func _gui_input(event):
 	if event is InputEventMouseButton and event.pressed and event.button_index == MOUSE_BUTTON_LEFT and available and !menu_shown:
+		AudioManager.play_sound_at_position(Vector2(0, 0), SoundEffect.SOUND_EFFECT_TYPE.MAP)
 		var menu_manager = get_tree().get_first_node_in_group("menu_manager")
 		menu_manager.show_decisions_menu()
 		menu_shown = true

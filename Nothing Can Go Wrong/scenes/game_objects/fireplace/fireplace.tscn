@@ -492,3 +492,5 @@ one_shot = true
 [node name="OnePieceCookTimer" type="Timer" parent="."]
 wait_time = 5.0
 one_shot = true
+
+[node name="SoundTimer" type="Timer" parent="."]

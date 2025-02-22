@@ -20,6 +20,8 @@ func _ready():
 	$Sprite2D.texture = possible_images.pick_random()
 	$LifeTime.timeout.connect(on_lifetime_timer_timeout)
 	max_health = life_points
+	if randf() < 0.25:
+		AudioManager.play_sound_at_position(self.global_position, SoundEffect.SOUND_EFFECT_TYPE.WHISPER)
 	
 
 func _process(delta):

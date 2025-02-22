@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="SoundEffect" load_steps=3 format=3 uid="uid://4m001ky7bncs"]
+
+[ext_resource type="Script" path="res://resources/scripts/sound_effect_resource.gd" id="1_0akh7"]
+[ext_resource type="AudioStream" uid="uid://iqc7py0a6a30" path="res://assets/sound_effects/map_sound2.wav" id="3_hktci"]
+
+[resource]
+script = ExtResource("1_0akh7")
+type = 6
+stream_sounds = Array[AudioStream]([ExtResource("3_hktci")])
+randomize_pitch = true
+volume = 20.0
+min_pitch = 1.0
+max_pitch = 1.0

@@ -308,6 +308,7 @@ func determine_outcome():
 
 
 func on_confirm_button_pressed():
+	AudioManager.play_sound_at_position(Vector2(300, 160), SoundEffect.SOUND_EFFECT_TYPE.BUTTON_PRESSED)
 	var menu_manager = get_tree().get_first_node_in_group("menu_manager")
 	menu_manager.remove_menu()
 

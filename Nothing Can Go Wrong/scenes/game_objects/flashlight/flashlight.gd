@@ -1,7 +1,7 @@
 extends Node2D
 
 
-@onready var lifetime : float = 60.0
+@onready var lifetime : float = 120.0
 @onready var is_on : bool = false
 var flicker_threshold : float = 1.0
 var flicker_time : float = 0.0
@@ -24,9 +24,10 @@ func _process(delta):
 			$PointLight2D.enabled = !$PointLight2D.enabled
 			flicker_time = 0.0
 	
-	if lifetime <= 0:
+	if lifetime < 0:
 		turn_on_off(false)
 		lifetime = 0
+		flicker_threshold = 0
 
 
 func _input(event):
@@ -36,6 +37,7 @@ func _input(event):
 
 func reload_battery():
 	lifetime += 60.0
+	flicker_threshold = 1.0
 	if lifetime > 60:
 		lifetime = 60
 
@@ -46,4 +48,5 @@ func face_at_mouse_position():
 	
 
 func turn_on_off(value: bool):
+	AudioManager.play_sound_at_position(self.global_position, SoundEffect.SOUND_EFFECT_TYPE.FLASHLIGHT)
 	$PointLight2D.enabled = value

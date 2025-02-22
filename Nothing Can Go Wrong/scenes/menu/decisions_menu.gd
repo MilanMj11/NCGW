@@ -81,6 +81,7 @@ func set_label_prices():
 
 
 func on_chopwood_button_down(toggled_on: bool):
+	AudioManager.play_sound_at_position(Vector2(300, 160), SoundEffect.SOUND_EFFECT_TYPE.BUTTON_PRESSED)
 	%RestButton.set_pressed_no_signal(false)
 	button_selected[BUTTON_TYPE.CHOP_WOOD] = true
 	var sign = 1
@@ -90,6 +91,7 @@ func on_chopwood_button_down(toggled_on: bool):
 	
 
 func on_hunt_button_down(toggled_on: bool):
+	AudioManager.play_sound_at_position(Vector2(300, 160), SoundEffect.SOUND_EFFECT_TYPE.BUTTON_PRESSED)
 	%RestButton.set_pressed_no_signal(false)
 	button_selected[BUTTON_TYPE.HUNT] = true
 	var sign = 1
@@ -99,6 +101,7 @@ func on_hunt_button_down(toggled_on: bool):
 
 
 func on_explore_button_down(toggled_on: bool):
+	AudioManager.play_sound_at_position(Vector2(300, 160), SoundEffect.SOUND_EFFECT_TYPE.BUTTON_PRESSED)
 	%RestButton.set_pressed_no_signal(false)
 	button_selected[BUTTON_TYPE.EXPLORE] = true
 	var sign = 1
@@ -108,7 +111,7 @@ func on_explore_button_down(toggled_on: bool):
 
 
 func on_rest_button_down(toggled_on: bool):
-	
+	AudioManager.play_sound_at_position(Vector2(300, 160), SoundEffect.SOUND_EFFECT_TYPE.BUTTON_PRESSED)
 	%ChopWoodButton.set_pressed_no_signal(false)
 	%HuntButton.set_pressed_no_signal(false)
 	%ExploreButton.set_pressed_no_signal(false)
@@ -125,6 +128,7 @@ func on_rest_button_down(toggled_on: bool):
 
 
 func on_confirm_button_pressed():
+	AudioManager.play_sound_at_position(Vector2(300, 160), SoundEffect.SOUND_EFFECT_TYPE.BUTTON_PRESSED)
 	%EscButton.disabled = true
 	var map = get_tree().get_first_node_in_group("map")
 	map.available = false
@@ -148,5 +152,6 @@ func connect_to_stats_manager():
 
 
 func on_esc_button_pressed():
+	AudioManager.play_sound_at_position(Vector2(300, 160), SoundEffect.SOUND_EFFECT_TYPE.BUTTON_PRESSED)
 	var menu_manager = get_tree().get_first_node_in_group("menu_manager")
 	menu_manager.remove_menu()

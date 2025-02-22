@@ -100,6 +100,8 @@ func play_decision_animation(energy_consumed):
 
 
 func night_settles(energy_consumed):
+	AudioManager.play_ambient_sound(SoundEffect.SOUND_EFFECT_TYPE.FOREST_NIGHT)
+	
 	%NightMessage.text = night_settles_messages.pick_random()
 	$AnimationPlayer.play("night_message")
 	await $AnimationPlayer.animation_finished
@@ -259,6 +261,8 @@ func play_first_day():
 
 
 func start_new_day():
+	AudioManager.play_ambient_sound(SoundEffect.SOUND_EFFECT_TYPE.FOREST_DAY)
+	
 	current_day += 1
 	
 	if current_day == 1:

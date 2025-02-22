@@ -81,7 +81,7 @@ libraries = {
 }
 
 [node name="VelocityComponent" parent="." instance=ExtResource("2_wr01y")]
-max_speed = 80
+max_speed = 70
 max_acceleration = 20.0
 
 [node name="Visuals" type="Node2D" parent="."]

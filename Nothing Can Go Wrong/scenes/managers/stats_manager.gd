@@ -54,7 +54,7 @@ func increase_stat(type: STAT_TYPE, amount: int):
 	
 	if type == STAT_TYPE.HEALTH:
 		var player = get_tree().get_first_node_in_group("player")
-		player.set_velocity_max_speed(30 + current_stats[STAT_TYPE.HEALTH] * 5)
+		player.set_velocity_max_speed(20 + current_stats[STAT_TYPE.HEALTH] * 5)
 
 
 func decrease_stat(type: STAT_TYPE, amount: int):
@@ -77,7 +77,7 @@ func decrease_stat(type: STAT_TYPE, amount: int):
 	
 	if type == STAT_TYPE.HEALTH:
 		var player = get_tree().get_first_node_in_group("player")
-		player.set_velocity_max_speed(30 + current_stats[STAT_TYPE.HEALTH] * 5)
+		player.set_velocity_max_speed(20 + current_stats[STAT_TYPE.HEALTH] * 5)
 		
 		if current_stats[STAT_TYPE.HEALTH] == 0:
 			player.reduce_all_movement()

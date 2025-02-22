@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="SoundEffect" load_steps=3 format=3 uid="uid://bxp0nxkwkklkx"]
+
+[ext_resource type="Script" path="res://resources/scripts/sound_effect_resource.gd" id="1_3voh8"]
+[ext_resource type="AudioStream" uid="uid://cn6g2ghymxt1b" path="res://assets/sound_effects/fire.wav" id="2_rndlg"]
+
+[resource]
+script = ExtResource("1_3voh8")
+type = 5
+stream_sounds = Array[AudioStream]([ExtResource("2_rndlg")])
+randomize_pitch = true
+volume = 1.0
+min_pitch = 1.0
+max_pitch = 1.0

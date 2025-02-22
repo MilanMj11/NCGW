@@ -2,9 +2,13 @@ extends Resource
 class_name SoundEffect
 
 enum SOUND_EFFECT_TYPE {
+	FOREST_DAY,
+	FOREST_NIGHT,
 	WHISPER,
 	BUTTON_PRESSED,
-	FLASHLIGHT
+	FLASHLIGHT,
+	FIRE,
+	MAP
 }
 
 

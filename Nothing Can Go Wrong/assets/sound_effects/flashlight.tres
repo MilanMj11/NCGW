@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="SoundEffect" load_steps=3 format=3 uid="uid://n0ewh7hxafqy"]
+
+[ext_resource type="Script" path="res://resources/scripts/sound_effect_resource.gd" id="1_w888t"]
+[ext_resource type="AudioStream" uid="uid://inxfrfg2s1f2" path="res://assets/sound_effects/Flashlight.ogg" id="2_4tmh2"]
+
+[resource]
+script = ExtResource("1_w888t")
+type = 4
+stream_sounds = Array[AudioStream]([ExtResource("2_4tmh2")])
+randomize_pitch = true
+volume = 1.0
+min_pitch = 0.8
+max_pitch = 1.2

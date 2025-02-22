@@ -122,6 +122,7 @@ func remove_quantity():
 
 
 func on_button_pressed():
+	AudioManager.play_sound_at_position(Vector2(300, 160), SoundEffect.SOUND_EFFECT_TYPE.BUTTON_PRESSED)
 	# Depending on item_type -> Take Action
 	# print(item_type)
 	var stats_manager = get_tree().get_first_node_in_group("stats_manager")

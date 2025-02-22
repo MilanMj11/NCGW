@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="SoundEffect" load_steps=5 format=3 uid="uid://buaryf7dd1pfn"]
+
+[ext_resource type="Script" path="res://resources/scripts/sound_effect_resource.gd" id="1_fu1ye"]
+[ext_resource type="AudioStream" uid="uid://b5ckuje60yrij" path="res://assets/sound_effects/whisper1.wav" id="2_pvfdl"]
+[ext_resource type="AudioStream" uid="uid://bsy8lld7c1pv0" path="res://assets/sound_effects/whisper2.wav" id="3_oyegw"]
+[ext_resource type="AudioStream" uid="uid://dtga3idh50pko" path="res://assets/sound_effects/whisper3.wav" id="4_q8aj4"]
+
+[resource]
+script = ExtResource("1_fu1ye")
+type = 2
+stream_sounds = Array[AudioStream]([ExtResource("2_pvfdl"), ExtResource("3_oyegw"), ExtResource("4_q8aj4")])
+randomize_pitch = true
+volume = 0.7
+min_pitch = 1.2
+max_pitch = 1.4
