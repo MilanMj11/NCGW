@@ -4,6 +4,7 @@ extends CanvasLayer
 func _ready():
 	get_tree().paused = false
 	%PlayButton.pressed.connect(on_play_button_pressed)
+	%ExitButton.pressed.connect(on_exit_button_pressed)
 
 
 
@@ -15,3 +16,7 @@ func on_play_button_pressed():
 
 func on_continue_button_pressed():
 	get_tree().change_scene_to_file("res://main/main.tscn")
+
+
+func on_exit_button_pressed():
+	get_tree().quit()

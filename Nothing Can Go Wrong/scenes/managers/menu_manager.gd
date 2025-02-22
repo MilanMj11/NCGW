@@ -8,7 +8,7 @@ signal transition_finished
 @onready var rewards_menu = preload("res://scenes/menu/rewards_menu.tscn")
 @onready var end_of_game_menu = preload("res://scenes/menu/end_of_game_menu.tscn")
 @onready var lost_menu = preload("res://scenes/menu/lost_menu.tscn")
-
+@onready var died_menu = preload("res://scenes/menu/died_menu.tscn")
 
 var main_node : Node
 var current_menu_node : Node
@@ -19,10 +19,12 @@ func _ready():
 	connect_to_current_menu_node()
 
 
-func show_menu(menu_scene: PackedScene):
+func show_menu(menu_scene: PackedScene, do_nothing : bool = false):
 	%ColorRect.visible = true
 	$AnimationPlayer.play("in")
 	var menu = menu_scene.instantiate()
+	if do_nothing == true:
+		menu.do_nothing = true
 	current_menu_node.add_child(menu)
 	
 	var slide_tween = get_tree().create_tween()
@@ -58,6 +60,11 @@ func show_end_of_game_menu():
 
 func show_lost_menu():
 	show_menu(lost_menu)
+
+
+func show_died_menu():
+	show_menu(died_menu)
+
 
 
 func remove_menu():

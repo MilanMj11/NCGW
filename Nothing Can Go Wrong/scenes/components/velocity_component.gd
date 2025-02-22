@@ -35,6 +35,11 @@ func update_current_stats():
 	current_acceleration = max_acceleration
 
 
+func set_max_speed(value: int):
+	max_speed = value
+
+
+
 func decelerate():
 	accelerate_in_direction(Vector2.ZERO)
 

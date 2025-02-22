@@ -1,6 +1,5 @@
 extends CanvasLayer
-
-var actions_manager
+class_name RewardsMenu
 
 @onready var positive_action_messages : Dictionary = {
 	"chopped_wood" : ["You've gathered plenty of wood to keep your fire going yet another night.",
@@ -60,10 +59,13 @@ var initial_hunger
 var initial_thirst
 
 var message : String = ""
+@onready var do_nothing : bool = false
 
 
 func _ready():
-	connect_to_actions_manager()
+	if do_nothing == true:
+		return
+	
 	determine_outcome()
 	construct_message()
 	update_stats_and_items()
@@ -191,16 +193,8 @@ func update_stats_and_items():
 	item_manager.add_items(item_manager.ITEM_TYPE.FLAREGUN, gathered_flaregun)
 	
 	# Stats:
-	initial_hunger = stats_manager.current_stats[stats_manager.STAT_TYPE.HUNGER]
-	if stats_manager.current_stats[stats_manager.STAT_TYPE.HUNGER] - used_hunger < 0:
-		used_health += randi_range(1, (-1 * (stats_manager.current_stats[stats_manager.STAT_TYPE.HUNGER] - used_hunger)))
 	stats_manager.decrease_stat(stats_manager.STAT_TYPE.HUNGER, used_hunger)
-	
-	initial_thirst = stats_manager.current_stats[stats_manager.STAT_TYPE.THIRST]
-	if stats_manager.current_stats[stats_manager.STAT_TYPE.THIRST] - used_thirst < 0:
-		used_health += randi_range(1, (-1 * (stats_manager.current_stats[stats_manager.STAT_TYPE.THIRST] - used_hunger)))
 	stats_manager.decrease_stat(stats_manager.STAT_TYPE.THIRST, used_thirst)
-	
 	stats_manager.decrease_stat(stats_manager.STAT_TYPE.HEALTH, used_health)
 	stats_manager.increase_stat(stats_manager.STAT_TYPE.SANITY, gathered_sanity)
 	stats_manager.increase_stat(stats_manager.STAT_TYPE.ENERGY, gathered_energy)
@@ -239,6 +233,7 @@ func construct_message():
 
 
 func determine_outcome():
+	var actions_manager = get_tree().get_first_node_in_group("actions_manager")
 	
 	if actions_manager.chopped_wood == true:
 		chopped_wood = true
@@ -286,7 +281,7 @@ func determine_outcome():
 		var used_health_choices = [0, 0, 0, 0, 1]
 		health_lost_exploring = used_health_choices[randi() % used_health_choices.size()]
 		used_health += health_lost_exploring
-		
+	
 	
 	if actions_manager.rested == true:
 		rested = true
@@ -296,6 +291,19 @@ func determine_outcome():
 		used_hunger += 1
 		used_thirst += 1
 	
+	var stats_manager = get_tree().get_first_node_in_group("stats_manager")
+	initial_hunger = stats_manager.current_stats[stats_manager.STAT_TYPE.HUNGER]
+	if stats_manager.current_stats[stats_manager.STAT_TYPE.HUNGER] - used_hunger < 0:
+		used_health += randi_range(1, (-1 * (stats_manager.current_stats[stats_manager.STAT_TYPE.HUNGER] - used_hunger)))
+
+	initial_thirst = stats_manager.current_stats[stats_manager.STAT_TYPE.THIRST]
+	if stats_manager.current_stats[stats_manager.STAT_TYPE.THIRST] - used_thirst < 0:
+		used_health += randi_range(1, (-1 * (stats_manager.current_stats[stats_manager.STAT_TYPE.THIRST] - used_hunger)))
+	
+
+	var died = (stats_manager.current_stats[stats_manager.STAT_TYPE.HEALTH] - used_health) <= 0
+	
+	return died
 
 
 
@@ -303,6 +311,3 @@ func on_confirm_button_pressed():
 	var menu_manager = get_tree().get_first_node_in_group("menu_manager")
 	menu_manager.remove_menu()
 
-
-func connect_to_actions_manager():
-	actions_manager = get_tree().get_first_node_in_group("actions_manager")

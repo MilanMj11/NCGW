@@ -11,6 +11,19 @@ signal can_sleep
 signal lost_all_sanity
 signal flaregun_fired
 
+@onready var seed_val
+
+func _ready():
+	seed_val = randi()
+
+
+func set_global_seed(seed_value):
+	seed(seed_value)
+	seed_val = seed_value
+
+
+func reset_global_seed():
+	seed(seed_val)
 
 
 func emit_stats_changed():

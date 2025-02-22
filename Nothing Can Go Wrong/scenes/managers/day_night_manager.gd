@@ -62,6 +62,13 @@ func play_decision_animation(energy_consumed):
 	
 	await get_tree().create_timer(3).timeout
 	
+	
+	var actions_manager = get_tree().get_first_node_in_group("actions_manager")
+	actions_manager.set_actions(chopped_wood, hunted, explored, rested)
+	
+	# If died
+	
+	
 	# In between
 	var campsite = get_tree().get_first_node_in_group("campsite")
 	campsite.set_sunset()
@@ -77,9 +84,6 @@ func play_decision_animation(energy_consumed):
 	# based on actions taken and randomness elements 
 	
 	await get_tree().create_timer(2.5).timeout
-	
-	var actions_manager = get_tree().get_first_node_in_group("actions_manager")
-	actions_manager.set_actions(chopped_wood, hunted, explored, rested)
 	
 	var menu_manager = get_tree().get_first_node_in_group("menu_manager")
 	menu_manager.show_rewards_menu()
@@ -138,6 +142,36 @@ func walk_in_and_out_of_forest(backwards: bool = false):
 	
 	var campsite = get_tree().get_first_node_in_group("campsite")
 	campsite.player_walk_in_forest(backwards)
+
+
+func play_died():
+	%DayLabel.text = "YOU DIED"
+	
+	get_tree().paused = true
+	ScreenTransition.transition_first_half()
+	await ScreenTransition.transitioned_first_half
+	
+	# This is one "in-between"
+	
+	$AnimationPlayer.play("show_day")
+	await $AnimationPlayer.animation_finished
+	
+	# This is another "in-between"
+	var game_camera = get_tree().get_first_node_in_group("game_camera")
+	game_camera.lock()
+	
+	var player = get_tree().get_first_node_in_group("player")
+	player.died()
+	
+	ScreenTransition.transition_second_half()
+	await ScreenTransition.transitioned_second_half
+	get_tree().paused = false
+	
+	await get_tree().create_timer(3).timeout
+	game_camera.unlock()
+	
+	var menu_manager = get_tree().get_first_node_in_group("menu_manager")
+	menu_manager.show_died_menu()
 
 
 func helpers_arrived():
@@ -225,6 +259,12 @@ func play_first_day():
 
 
 func start_new_day():
+	current_day += 1
+	
+	if current_day == 1:
+		play_first_day()
+		return
+	
 	var stats_manager = get_tree().get_first_node_in_group("stats_manager")
 	if stats_manager.current_stats[stats_manager.STAT_TYPE.SANITY] == 0:
 		rest_crazy()
@@ -244,11 +284,6 @@ func start_new_day():
 	var fireplace = get_tree().get_first_node_in_group("fireplace")
 	fireplace.stop_fire()
 	
-	current_day += 1
-	
-	if current_day == 1:
-		play_first_day()
-		return
 	
 	%DayLabel.text = "DAY " + str(current_day)
 	

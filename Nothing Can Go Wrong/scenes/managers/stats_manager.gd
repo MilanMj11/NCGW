@@ -7,7 +7,7 @@ var current_stats : Dictionary = {
 	STAT_TYPE.HUNGER : 5,
 	STAT_TYPE.THIRST : 5,
 	STAT_TYPE.HEALTH : 10,
-	STAT_TYPE.SANITY : 1,
+	STAT_TYPE.SANITY : 6,
 	STAT_TYPE.ENERGY : 10,
 }
 
@@ -51,6 +51,10 @@ func increase_stat(type: STAT_TYPE, amount: int):
 	current_stats[type] += amount
 	current_stats[type] = clamp(current_stats[type], 0, maximum_stats[type])
 	GameEvents.emit_stats_changed()
+	
+	if type == STAT_TYPE.HEALTH:
+		var player = get_tree().get_first_node_in_group("player")
+		player.set_velocity_max_speed(30 + current_stats[STAT_TYPE.HEALTH] * 5)
 
 
 func decrease_stat(type: STAT_TYPE, amount: int):
@@ -70,6 +74,13 @@ func decrease_stat(type: STAT_TYPE, amount: int):
 	
 	if type == STAT_TYPE.SANITY and current_stats[STAT_TYPE.SANITY] == 0:
 		GameEvents.emit_lost_all_sanity()
+	
+	if type == STAT_TYPE.HEALTH:
+		var player = get_tree().get_first_node_in_group("player")
+		player.set_velocity_max_speed(30 + current_stats[STAT_TYPE.HEALTH] * 5)
+		
+		if current_stats[STAT_TYPE.HEALTH] == 0:
+			player.reduce_all_movement()
 	
 	GameEvents.emit_stats_changed()
 

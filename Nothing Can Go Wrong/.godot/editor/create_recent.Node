@@ -1,14 +1,14 @@
+Sprite2D
+AnimationPlayer
+CanvasLayer
 Button
 RichTextLabel
 MarginContainer
 Label
-AnimationPlayer
 ColorRect
 VBoxContainer
 TextureRect
-CanvasLayer
 PanelContainer
 Node2D
-Sprite2D
 PointLight2D
 SubViewport
