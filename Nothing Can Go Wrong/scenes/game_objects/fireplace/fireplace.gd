@@ -47,7 +47,8 @@ func stop_fire():
 	%Fire.visible = false
 	burning = false
 	fireplace_extinguished.emit()
-	audio2d.stop()
+	if audio2d != null:
+		audio2d.stop()
 
 
 func on_sound_timer_timeout():
