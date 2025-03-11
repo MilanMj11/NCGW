@@ -1,6 +1,7 @@
 # Flare of Hope  
 
 A game created for Brackeys Game Jam 2025.1
+
 Ranked #349 / 2200 overall  
 
 This was my **first ever** game jam.  
